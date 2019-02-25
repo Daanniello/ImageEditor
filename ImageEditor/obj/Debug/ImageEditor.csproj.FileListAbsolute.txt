@@ -1,0 +1,15 @@
+D:\Projects\ImageEditor\ImageEditor\bin\Debug\ImageEditor.exe.config
+D:\Projects\ImageEditor\ImageEditor\bin\Debug\ImageEditor.exe
+D:\Projects\ImageEditor\ImageEditor\bin\Debug\ImageEditor.pdb
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csprojAssemblyReference.cache
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\MainWindow.g.cs
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\App.g.cs
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\ImageEditor_MarkupCompile.cache
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\ImageEditor_MarkupCompile.lref
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\MainWindow.baml
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\ImageEditor.g.resources
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\ImageEditor.Properties.Resources.resources
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.GenerateResource.cache
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.CoreCompileInputs.cache
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\ImageEditor.exe
+D:\Projects\ImageEditor\ImageEditor\obj\Debug\ImageEditor.pdb

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28307.329
+VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageEditor", "ImageEditor\ImageEditor.csproj", "{4E70AD6E-82D1-4940-97D2-9C835EF4D9FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageEditor", "ImageEditor.csproj", "{39FD0E9D-7B54-496B-A718-0D4C71842ED1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4E70AD6E-82D1-4940-97D2-9C835EF4D9FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E70AD6E-82D1-4940-97D2-9C835EF4D9FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E70AD6E-82D1-4940-97D2-9C835EF4D9FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E70AD6E-82D1-4940-97D2-9C835EF4D9FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39FD0E9D-7B54-496B-A718-0D4C71842ED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39FD0E9D-7B54-496B-A718-0D4C71842ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39FD0E9D-7B54-496B-A718-0D4C71842ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39FD0E9D-7B54-496B-A718-0D4C71842ED1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {87064E76-720A-4CED-B0E5-426835B58A68}
+		SolutionGuid = {7FA0F355-790B-4442-A614-31D599C6CC71}
 	EndGlobalSection
 EndGlobal
