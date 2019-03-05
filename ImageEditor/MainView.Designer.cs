@@ -28,6 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "sadsa"}, 0, System.Drawing.Color.Empty, System.Drawing.SystemColors.Menu, null);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("", 1);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("", 0);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            ""}, 1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Menu, null);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             this.header = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolmenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,13 +49,21 @@
             this.invertedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randomizedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timeline = new System.Windows.Forms.Panel();
+            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.splitter = new System.Windows.Forms.Splitter();
             this.sidebar = new System.Windows.Forms.Panel();
             this.viewport = new System.Windows.Forms.Panel();
-            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.timeline = new System.Windows.Forms.Panel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.header.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.viewport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.timeline.SuspendLayout();
             this.SuspendLayout();
             // 
             // header
@@ -63,13 +79,14 @@
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.LightGray;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolmenu,
             this.filterToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -82,37 +99,39 @@
             this.exportToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.toolmenu.Name = "toolmenu";
-            this.toolmenu.Size = new System.Drawing.Size(37, 20);
+            this.toolmenu.Size = new System.Drawing.Size(44, 24);
             this.toolmenu.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.importToolStripMenuItem.Text = "Import";
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.exportToolStripMenuItem.Text = "Export";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // filterToolStripMenuItem
@@ -122,25 +141,25 @@
             this.invertedToolStripMenuItem,
             this.randomizedToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.filterToolStripMenuItem.Text = "Filter";
             // 
             // grayscaleToolStripMenuItem
             // 
             this.grayscaleToolStripMenuItem.Name = "grayscaleToolStripMenuItem";
-            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
             this.grayscaleToolStripMenuItem.Text = "Grayscale";
             // 
             // invertedToolStripMenuItem
             // 
             this.invertedToolStripMenuItem.Name = "invertedToolStripMenuItem";
-            this.invertedToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.invertedToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
             this.invertedToolStripMenuItem.Text = "Inverted";
             // 
             // randomizedToolStripMenuItem
             // 
             this.randomizedToolStripMenuItem.Name = "randomizedToolStripMenuItem";
-            this.randomizedToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.randomizedToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
             this.randomizedToolStripMenuItem.Text = "Randomized";
             // 
             // helpToolStripMenuItem
@@ -148,23 +167,20 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.helpToolStripMenuItem1});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // timeline
+            // helpToolStripMenuItem1
             // 
-            this.timeline.BackColor = System.Drawing.Color.LightGray;
-            this.timeline.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.timeline.Location = new System.Drawing.Point(0, 346);
-            this.timeline.Name = "timeline";
-            this.timeline.Size = new System.Drawing.Size(800, 104);
-            this.timeline.TabIndex = 3;
+            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(116, 26);
+            this.helpToolStripMenuItem1.Text = "Help";
             // 
             // splitter
             // 
             this.splitter.BackColor = System.Drawing.Color.DarkGray;
             this.splitter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter.Location = new System.Drawing.Point(0, 343);
+            this.splitter.Location = new System.Drawing.Point(0, 310);
             this.splitter.Name = "splitter";
             this.splitter.Size = new System.Drawing.Size(800, 3);
             this.splitter.TabIndex = 5;
@@ -176,22 +192,70 @@
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidebar.Location = new System.Drawing.Point(0, 25);
             this.sidebar.Name = "sidebar";
-            this.sidebar.Size = new System.Drawing.Size(96, 318);
+            this.sidebar.Size = new System.Drawing.Size(96, 285);
             this.sidebar.TabIndex = 6;
             // 
             // viewport
             // 
+            this.viewport.Controls.Add(this.pictureBox1);
             this.viewport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.viewport.Location = new System.Drawing.Point(96, 25);
             this.viewport.Name = "viewport";
-            this.viewport.Size = new System.Drawing.Size(704, 318);
+            this.viewport.Size = new System.Drawing.Size(704, 285);
             this.viewport.TabIndex = 7;
             // 
-            // helpToolStripMenuItem1
+            // pictureBox1
             // 
-            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.helpToolStripMenuItem1.Text = "Help";
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Location = new System.Drawing.Point(179, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(300, 267);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // timeline
+            // 
+            this.timeline.BackColor = System.Drawing.Color.LightGray;
+            this.timeline.Controls.Add(this.listView1);
+            this.timeline.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.timeline.Location = new System.Drawing.Point(0, 313);
+            this.timeline.Name = "timeline";
+            this.timeline.Size = new System.Drawing.Size(800, 137);
+            this.timeline.TabIndex = 3;
+            // 
+            // listView1
+            // 
+            this.listView1.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.listView1.BackColor = System.Drawing.Color.Silver;
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.HideSelection = false;
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4});
+            this.listView1.LargeImageList = this.imageList1;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(800, 137);
+            this.listView1.SmallImageList = this.imageList1;
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Silver;
+            this.imageList1.Images.SetKeyName(0, "value-chain-porter.png");
+            this.imageList1.Images.SetKeyName(1, "value-chain-porterv2.png");
             // 
             // MainView
             // 
@@ -212,13 +276,15 @@
             this.header.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.viewport.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.timeline.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Panel header;
-        private System.Windows.Forms.Panel timeline;
         private System.Windows.Forms.Splitter splitter;
         private System.Windows.Forms.Panel sidebar;
         private System.Windows.Forms.Panel viewport;
@@ -235,6 +301,12 @@
         private System.Windows.Forms.ToolStripMenuItem randomizedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Panel timeline;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 
