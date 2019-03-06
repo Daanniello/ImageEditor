@@ -30,7 +30,11 @@ namespace ImageEditor
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Clicked on open");
-            if (_mediaEditor.OpenMedia(openFileDialog1)) UpdateMedia();
+            _mediaEditor.OpenMedia(openFileDialog1);
+
+            if (_mediaEditor.Media == null) return;
+
+            UpdateMedia();
             UpdateTimeline(_mediaEditor.GetMediaFrames());
         }
 
@@ -106,6 +110,8 @@ namespace ImageEditor
 
         private void ApplyFilter(string type)
         {
+            if (_mediaEditor.Media == null) return;
+
             if (_mediaEditor.ApplyFilter(type))
             {
                 UpdateMedia();
