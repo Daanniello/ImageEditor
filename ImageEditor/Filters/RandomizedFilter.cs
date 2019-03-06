@@ -11,16 +11,16 @@ namespace ImageEditor
     {
         private int offset = -1;
 
-        protected override Color CalculatePixel(Color color)
+        protected override byte[] CalculatePixel(byte r, byte g, byte b)
         {
             if (offset == -1) SetRandomOffset();
 
-            return Color.FromArgb(
-                color.A,
-                (color.R + offset) % 255,
-                (color.G + offset) % 255,
-                (color.B + offset) % 255
-                );
+            return new byte[]
+            {
+                Convert.ToByte((r + offset) % 255),
+                Convert.ToByte((g + offset) % 255),
+                Convert.ToByte((b + offset) % 255)
+            };
         }
 
         private void SetRandomOffset()
