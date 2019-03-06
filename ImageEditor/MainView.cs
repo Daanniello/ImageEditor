@@ -30,8 +30,13 @@ namespace ImageEditor
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Clicked on open");
-            if (_mediaEditor.OpenMedia(openFileDialog1)) pictureBox1.Image = _mediaEditor.Media;
+            if (_mediaEditor.OpenMedia(openFileDialog1)) UpdateMedia();
             UpdateTimeline(_mediaEditor.GetMediaFrames());
+        }
+
+        private void UpdateMedia()
+        {
+            pictureBox1.Image = _mediaEditor.Media;
         }
 
         private void UpdateTimeline(List<Image> mediaFrames)
@@ -77,6 +82,17 @@ namespace ImageEditor
         {
             Console.WriteLine("Clicked on export");
             _mediaEditor.ExportMedia(folderBrowserDialog1);
+        }
+
+        private void filterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void grayscaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Apply Grayscale filter");
+            if (_mediaEditor.ImageGrayscale()) { UpdateMedia(); UpdateTimeline(_mediaEditor.GetMediaFrames()); };
         }
     }
 }
