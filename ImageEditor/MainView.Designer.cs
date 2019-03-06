@@ -136,23 +136,25 @@
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
             this.filterToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.filterToolStripMenuItem.Text = "Filter";
+            this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
             // 
             // grayscaleToolStripMenuItem
             // 
             this.grayscaleToolStripMenuItem.Name = "grayscaleToolStripMenuItem";
-            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.grayscaleToolStripMenuItem.Text = "Grayscale";
+            this.grayscaleToolStripMenuItem.Click += new System.EventHandler(this.grayscaleToolStripMenuItem_Click);
             // 
             // invertedToolStripMenuItem
             // 
             this.invertedToolStripMenuItem.Name = "invertedToolStripMenuItem";
-            this.invertedToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.invertedToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.invertedToolStripMenuItem.Text = "Inverted";
             // 
             // randomizedToolStripMenuItem
             // 
             this.randomizedToolStripMenuItem.Name = "randomizedToolStripMenuItem";
-            this.randomizedToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.randomizedToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.randomizedToolStripMenuItem.Text = "Randomized";
             // 
             // helpToolStripMenuItem
