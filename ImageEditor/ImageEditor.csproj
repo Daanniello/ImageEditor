@@ -46,7 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImageGrayscale.cs" />
+    <Compile Include="Filters\Filter.cs" />
+    <Compile Include="Filters\RandomizedFilter.cs" />
+    <Compile Include="Filters\InvertedFilter.cs" />
+    <Compile Include="Filters\GrayscaleFilter.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,7 +61,6 @@
     <Compile Include="MediaPorter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VideoGrayscale.cs" />
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>

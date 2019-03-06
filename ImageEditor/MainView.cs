@@ -91,8 +91,26 @@ namespace ImageEditor
 
         private void grayscaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Apply Grayscale filter");
-            if (_mediaEditor.ImageGrayscale()) { UpdateMedia(); UpdateTimeline(_mediaEditor.GetMediaFrames()); };
+            ApplyFilter("Grayscale");
+        }
+
+        private void invertedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ApplyFilter("Inverted");
+        }
+
+        private void randomizedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ApplyFilter("Randomized");
+        }
+
+        private void ApplyFilter(string type)
+        {
+            if (_mediaEditor.ApplyFilter(type))
+            {
+                UpdateMedia();
+                UpdateTimeline(_mediaEditor.GetMediaFrames());
+            };
         }
     }
 }

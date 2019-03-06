@@ -55,14 +55,15 @@ namespace ImageEditor
             return frames;
         }
 
-        //TODO moet nog in de pattern worden gezet !!
-        public bool ImageGrayscale()
+        public bool ApplyFilter(string type)
         {
-            var gFilter = new ImageGrayscale();
-            Media = gFilter.ApplyFilter(Media);
+            Filter filter = Filter.MakeFilter(type);
+
+            if (filter == null) return false;
+
+            Media = filter.ApplyFilter(Media);
+
             return true;
         }
-
-
     }
 }
