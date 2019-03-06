@@ -9,17 +9,12 @@ namespace ImageEditor
 {
     class GrayscaleFilter : Filter
     {
-        protected override Color CalculatePixel(Color color)
+        protected override byte[] CalculatePixel(byte r, byte g, byte b)
         {
-            int totalColor = color.R + color.G + color.B;
-            int splitColor = totalColor / 3;
+            int totalColor = r + g + b;
+            byte value = Convert.ToByte(totalColor / 3);
 
-            return Color.FromArgb(
-                color.A,
-                splitColor,
-                splitColor,
-                splitColor
-                );
+            return new byte[] { value, value, value };
         }
     }
 }

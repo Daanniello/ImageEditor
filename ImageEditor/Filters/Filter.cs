@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +11,7 @@ namespace ImageEditor
 {
     abstract class Filter
     {
-        Bitmap bitmap;
+        private byte[] imageBytes;
 
         public static Filter MakeFilter(string type)
         {
@@ -28,26 +30,40 @@ namespace ImageEditor
 
         public Image ApplyFilter(Image image)
         {
-            bitmap = image as Bitmap;
-            
-            for (var x = 0; x < bitmap.Width; x++)
+            Bitmap bitmap = image as Bitmap;
+
+            BitmapData imageData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+
+            imageBytes = new byte[Math.Abs(imageData.Stride) * bitmap.Height];
+            IntPtr scan0 = imageData.Scan0;
+
+            Marshal.Copy(scan0, imageBytes, 0, imageBytes.Length);
+
+            for (int i = 0; i < imageBytes.Length; i += 4)
             {
-                for (var y = 0; y < bitmap.Height; y++)
-                {
-                    UpdatePixel(x, y);
-                }
+                UpdatePixel(i);
             }
+
+            Marshal.Copy(imageBytes, 0, scan0, imageBytes.Length);
+
+            bitmap.UnlockBits(imageData);
 
             return bitmap as Image;
         }
 
-        private void UpdatePixel(int x, int y)
+        private void UpdatePixel(int i)
         {
-            Color pixel = bitmap.GetPixel(x, y);
-            Color newColor = CalculatePixel(pixel);
-            bitmap.SetPixel(x, y, newColor);
+            byte[] pixel = CalculatePixel(
+                imageBytes[i],
+                imageBytes[i + 1],
+                imageBytes[i + 2]
+                );
+
+            imageBytes[i] = pixel[0];
+            imageBytes[i + 1] = pixel[1];
+            imageBytes[i + 2] = pixel[2];
         }
 
-        protected abstract Color CalculatePixel(Color pixel);
+        protected abstract byte[] CalculatePixel(byte r, byte g, byte b);
     }
 }
