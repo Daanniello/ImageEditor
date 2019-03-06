@@ -22,7 +22,6 @@ namespace ImageEditor
         public Image OpenMedia(OpenFileDialog openMediaDialog)
         {
             OpenFileDialog mediaDialog = openMediaDialog;
-
             DialogResult result = mediaDialog.ShowDialog();
             var size = -1;
             Image image = null;
@@ -43,8 +42,7 @@ namespace ImageEditor
                     Console.WriteLine(ex);
                 }
             }
-            Console.WriteLine(size); 
-            Console.WriteLine(result);
+
             return image;
         }
 
