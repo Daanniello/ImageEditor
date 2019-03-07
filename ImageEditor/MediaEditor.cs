@@ -15,6 +15,7 @@ namespace ImageEditor
 
         private Image _media;
         public int FrameIndex;
+        public List<int> SelectedFrames;
         public List<Image> Frames;
 
         public MediaEditor()
@@ -68,11 +69,10 @@ namespace ImageEditor
 
             if (filter == null) return false;
 
-            Image currentFrame = Frames[FrameIndex]; ;
-
-            currentFrame = filter.ApplyFilter(currentFrame);
-
-            Frames[FrameIndex] = currentFrame;
+            foreach (int index in SelectedFrames)
+            {
+                Frames[index] = filter.ApplyFilter(Frames[index]);
+            }
 
             return true;
         }

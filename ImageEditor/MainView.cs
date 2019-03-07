@@ -29,7 +29,7 @@ namespace ImageEditor
             if (_mediaEditor.Frames == null) return;
 
             UpdateMedia();
-            UpdateTimeline(_mediaEditor.Frames);
+            UpdateTimeline();
         }
 
         private void UpdateMedia()
@@ -37,8 +37,10 @@ namespace ImageEditor
             pictureBox1.Image = _mediaEditor.Frames[_mediaEditor.FrameIndex];
         }
 
-        private void UpdateTimeline(List<Image> mediaFrames)
+        private void UpdateTimeline()
         {
+            List<Image> mediaFrames = _mediaEditor.Frames;
+
             var mediaList = new ImageList();
             mediaList.ImageSize = new Size(96, 96);
             listView1.Clear();
@@ -47,6 +49,7 @@ namespace ImageEditor
 
             for (var x = 0; x < mediaFrames.Count; x++)
             {
+                Image image = mediaFrames[x];
                 mediaList.Images.Add(mediaFrames[x]);
 
             }
@@ -56,7 +59,6 @@ namespace ImageEditor
                 item.ImageIndex = x;
                 item.Text = x.ToString();
                 listView1.Items.Add(item);
-
             }
         }
 
@@ -93,14 +95,23 @@ namespace ImageEditor
             if (_mediaEditor.ApplyFilter(type))
             {
                 UpdateMedia();
-                UpdateTimeline(_mediaEditor.Frames);
+                UpdateTimeline();
             };
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
         {
             if (listView1.SelectedItems.Count == 0) return;
+
+            _mediaEditor.SelectedFrames = new List<int>();
+
+            foreach (ListViewItem item in listView1.SelectedItems)
+            {
+                _mediaEditor.SelectedFrames.Add(item.Index);
+            }
+
             _mediaEditor.FrameIndex = listView1.SelectedItems[0].Index;
+
             UpdateMedia();
         }
     }
