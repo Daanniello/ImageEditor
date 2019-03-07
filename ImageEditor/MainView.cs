@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ImageEditor
@@ -32,20 +26,19 @@ namespace ImageEditor
             Console.WriteLine("Clicked on open");
             _mediaEditor.OpenMedia(openFileDialog1);
 
-            if (_mediaEditor.Media == null) return;
+            if (_mediaEditor.Frames == null) return;
 
             UpdateMedia();
-            UpdateTimeline(_mediaEditor.GetMediaFrames());
+            UpdateTimeline(_mediaEditor.Frames);
         }
 
         private void UpdateMedia()
         {
-            pictureBox1.Image = _mediaEditor.Media;
+            pictureBox1.Image = _mediaEditor.Frames[_mediaEditor.FrameIndex];
         }
 
         private void UpdateTimeline(List<Image> mediaFrames)
         {
-            Console.WriteLine("Update Timeline");
             var mediaList = new ImageList();
             mediaList.ImageSize = new Size(96, 96);
             listView1.Clear();
@@ -65,21 +58,6 @@ namespace ImageEditor
                 listView1.Items.Add(item);
 
             }
-
-            //foreach (var frame in mediaFrames)
-            //{
-            //    mediaList.Images.Add(frame);
-            //    var listViewItem = new ListViewItem();
-            //    listViewItem.ad
-
-            //    listView1.Items.Add(frame);
-            //}
-            //listView1.LargeImageList = mediaList;
-            //listView1.
-
-
-
-            //panel1.Controls.Add();
         }
 
         private void exportToolStripMenuItem_click(object sender, EventArgs e)
@@ -110,13 +88,20 @@ namespace ImageEditor
 
         private void ApplyFilter(string type)
         {
-            if (_mediaEditor.Media == null) return;
+            if (_mediaEditor.Frames == null) return;
 
             if (_mediaEditor.ApplyFilter(type))
             {
                 UpdateMedia();
-                UpdateTimeline(_mediaEditor.GetMediaFrames());
+                UpdateTimeline(_mediaEditor.Frames);
             };
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0) return;
+            _mediaEditor.FrameIndex = listView1.SelectedItems[0].Index;
+            UpdateMedia();
         }
     }
 }

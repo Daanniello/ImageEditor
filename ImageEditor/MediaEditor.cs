@@ -12,7 +12,10 @@ namespace ImageEditor
     class MediaEditor
     {
         private MediaPorter _mediaPorter;
-        public Image Media;
+
+        private Image _media;
+        public int FrameIndex;
+        public List<Image> Frames;
 
         public MediaEditor()
         {
@@ -21,35 +24,39 @@ namespace ImageEditor
 
         public bool OpenMedia(OpenFileDialog openMediaDialog)
         {
-            Media = _mediaPorter.OpenMedia(openMediaDialog);
-            if (Media != null) return true;
-            return false;
+            _media = _mediaPorter.OpenMedia(openMediaDialog);
+
+            if (_media == null) return false;
+
+            try
+            {
+                Frames = MediaToFrames(_media);
+            }
+            catch (Exception ex)
+            {
+                Frames = new List<Image>();
+                Frames.Add(_media);
+            }
+
+            FrameIndex = 0;
+
+            return true;
         }
 
         public bool ExportMedia(FolderBrowserDialog folderSelectDialog)
         {
-            return _mediaPorter.ExportMedia(folderSelectDialog, Media);
+            return _mediaPorter.ExportMedia(folderSelectDialog, _media);
         }
 
-        public List<Image> GetMediaFrames()
+        public List<Image> MediaToFrames(Image media)
         {
-            int numberOfFrames = 1;
-
-            try
-            {
-                numberOfFrames = Media.GetFrameCount(FrameDimension.Time);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
- 
             List<Image> frames = new List<Image>();
+            int length = media.GetFrameCount(FrameDimension.Time);
 
-            for (int i = 0; i < numberOfFrames; i++)
+            for (int i = 0; i < length; i++)
             {
-                Media.SelectActiveFrame(FrameDimension.Time, i);
-                frames.Add((Image)Media.Clone());
+                media.SelectActiveFrame(FrameDimension.Time, i);
+                frames.Add(new Bitmap(media));
             }
 
             return frames;
@@ -61,7 +68,11 @@ namespace ImageEditor
 
             if (filter == null) return false;
 
-            Media = filter.ApplyFilter(Media);
+            Image currentFrame = Frames[FrameIndex]; ;
+
+            currentFrame = filter.ApplyFilter(currentFrame);
+
+            Frames[FrameIndex] = currentFrame;
 
             return true;
         }
