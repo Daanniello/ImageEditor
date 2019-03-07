@@ -18,3 +18,13 @@ C:\Users\DaanS\OneDrive\Documenten\GitHub\ImageEditor\ImageEditor\obj\Debug\Imag
 C:\Users\DaanS\OneDrive\Documenten\GitHub\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.CoreCompileInputs.cache
 C:\Users\DaanS\OneDrive\Documenten\GitHub\ImageEditor\ImageEditor\obj\Debug\ImageEditor.exe
 C:\Users\DaanS\OneDrive\Documenten\GitHub\ImageEditor\ImageEditor\obj\Debug\ImageEditor.pdb
+D:\GitHub\ImageEditor\ImageEditor\bin\Debug\ImageEditor.exe.config
+D:\GitHub\ImageEditor\ImageEditor\bin\Debug\ImageEditor.exe
+D:\GitHub\ImageEditor\ImageEditor\bin\Debug\ImageEditor.pdb
+D:\GitHub\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csprojAssemblyReference.cache
+D:\GitHub\ImageEditor\ImageEditor\obj\Debug\ImageEditor.MainView.resources
+D:\GitHub\ImageEditor\ImageEditor\obj\Debug\ImageEditor.Properties.Resources.resources
+D:\GitHub\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.GenerateResource.cache
+D:\GitHub\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.CoreCompileInputs.cache
+D:\GitHub\ImageEditor\ImageEditor\obj\Debug\ImageEditor.exe
+D:\GitHub\ImageEditor\ImageEditor\obj\Debug\ImageEditor.pdb
