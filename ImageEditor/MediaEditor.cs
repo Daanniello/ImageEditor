@@ -57,8 +57,7 @@ namespace ImageEditor
 
         public bool ExportMedia(FolderBrowserDialog folderSelectDialog)
         {
-            //return _porter.ExportMedia();
-            throw new NotImplementedException();
+            return _porter.ExportMedia(folderSelectDialog, Media.Frames);
         }
         
         public bool ApplyFilter(string type)

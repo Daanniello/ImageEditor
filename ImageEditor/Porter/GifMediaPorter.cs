@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace ImageEditor
 {
@@ -26,7 +27,7 @@ namespace ImageEditor
             throw new NotImplementedException();
         }
 
-        public bool ExportMedia()
+        public bool ExportMedia(FolderBrowserDialog folderSelectDialog, List<Image> frames)
         {
             //if (Media.Extension == ".gif")
             //{
