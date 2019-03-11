@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImageEditor
 {
@@ -24,11 +21,21 @@ namespace ImageEditor
                 case "Randomized":
                     return new RandomizedFilter();
                 default:
-                    return null;
+                    throw new InvalidOperationException();
             }
         }
 
-        public Image ApplyFilter(Image image)
+        public Queue<Image> ApplyFilterOnFrames(List<Image> frames)
+        {
+            Queue<Image> updatedFrames = new Queue<Image>();
+            foreach (Image image in frames)
+            {
+                updatedFrames.Enqueue(ApplyFIlterOnImage(image));
+            }
+            return updatedFrames;
+        }
+
+        public Image ApplyFIlterOnImage(Image image)
         {
             Bitmap bitmap = image as Bitmap;
 

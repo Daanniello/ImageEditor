@@ -12,7 +12,7 @@ namespace ImageEditor
         public MainView()
         {
             InitializeComponent();
-            _mediaEditor = new MediaEditor();
+            _mediaEditor = new MediaEditor(this);
             
         }
 
