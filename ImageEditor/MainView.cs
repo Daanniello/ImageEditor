@@ -26,7 +26,7 @@ namespace ImageEditor
             Console.WriteLine("Clicked on open");
             _mediaEditor.OpenMedia(openFileDialog1);
 
-            if (_mediaEditor.Frames == null) return;
+            if (_mediaEditor.Media.Frames == null) return;
 
             UpdateMedia();
             UpdateTimeline();
@@ -34,12 +34,12 @@ namespace ImageEditor
 
         private void UpdateMedia()
         {
-            pictureBox1.Image = _mediaEditor.Frames[_mediaEditor.FrameIndex];
+            pictureBox1.Image = _mediaEditor.Media.Frames[_mediaEditor.Media.FrameIndex];
         }
 
         private void UpdateTimeline()
         {
-            List<Image> mediaFrames = _mediaEditor.Frames;
+            List<Image> mediaFrames = _mediaEditor.Media.Frames;
 
             var mediaList = new ImageList();
             mediaList.ImageSize = new Size(96, 96);
@@ -90,7 +90,7 @@ namespace ImageEditor
 
         private void ApplyFilter(string type)
         {
-            if (_mediaEditor.Frames == null) return;
+            if (_mediaEditor.Media.Frames == null) return;
 
             if (_mediaEditor.ApplyFilter(type))
             {
@@ -103,14 +103,14 @@ namespace ImageEditor
         {
             if (listView1.SelectedItems.Count == 0) return;
 
-            _mediaEditor.SelectedFrames = new List<int>();
+            _mediaEditor.Media.SelectedFrames = new List<int>();
 
             foreach (ListViewItem item in listView1.SelectedItems)
             {
-                _mediaEditor.SelectedFrames.Add(item.Index);
+                _mediaEditor.Media.SelectedFrames.Add(item.Index);
             }
 
-            _mediaEditor.FrameIndex = listView1.SelectedItems[0].Index;
+            _mediaEditor.Media.FrameIndex = listView1.SelectedItems[0].Index;
 
             UpdateMedia();
         }

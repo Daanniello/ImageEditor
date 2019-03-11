@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,41 +13,44 @@ namespace ImageEditor
     class MediaEditor
     {
         private MediaPorter _mediaPorter;
-
-        private Image _media;
-        public int FrameIndex;
-        public List<int> SelectedFrames;
-        public List<Image> Frames;
+        public Media Media;
+       
+        
 
         public MediaEditor()
         {
+            Media = new Media();
             _mediaPorter = new MediaPorter();
         }
 
         public bool OpenMedia(OpenFileDialog openMediaDialog)
-        {
-            _media = _mediaPorter.OpenMedia(openMediaDialog);
+        {           
+            Media.File = _mediaPorter.OpenMedia(openMediaDialog);
+            Media.Extension = Path.GetExtension(openMediaDialog.FileName);
+            if (Media == null) return false;
 
-            if (_media == null) return false;
-
-            try
+            if (Media.Extension == ".gif")
             {
-                Frames = MediaToFrames(_media);
+                Media.Frames = MediaToFrames(Media.File);
             }
-            catch (Exception ex)
+            else
             {
-                Frames = new List<Image>();
-                Frames.Add(_media);
+                Media.Frames = new List<Image>();
+                Media.Frames.Add(Media.File);
             }
 
-            FrameIndex = 0;
+            Media.FrameIndex = 0;
 
             return true;
         }
 
         public bool ExportMedia(FolderBrowserDialog folderSelectDialog)
         {
-            return _mediaPorter.ExportMedia(folderSelectDialog, _media);
+            if (Media.Extension == ".gif")
+            {
+                return _mediaPorter.ExportMedia(folderSelectDialog, Media.File, Media.Extension, Media.Frames);
+            }
+            return _mediaPorter.ExportMedia(folderSelectDialog, Media.File);
         }
 
         public List<Image> MediaToFrames(Image media)
@@ -69,9 +73,9 @@ namespace ImageEditor
 
             if (filter == null) return false;
 
-            foreach (int index in SelectedFrames)
+            foreach (int index in Media.SelectedFrames)
             {
-                Frames[index] = filter.ApplyFilter(Frames[index]);
+                Media.Frames[index] = filter.ApplyFilter(Media.Frames[index]);
             }
 
             return true;

@@ -2,36 +2,29 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using AnimatedGif;
 
 namespace ImageEditor
 {
-    class MediaPorter
+    internal class MediaPorter
     {
-        private Image _mediaFile;
         private string _fileLocation;
-
-        public MediaPorter()
-        {
-            
-        }
+        private Image _mediaFile;
 
         public Image OpenMedia(OpenFileDialog openMediaDialog)
         {
-            OpenFileDialog mediaDialog = openMediaDialog;
-            DialogResult result = mediaDialog.ShowDialog();
+            var mediaDialog = openMediaDialog;
+            var result = mediaDialog.ShowDialog();
             var size = -1;
             Image image = null;
 
             if (result == DialogResult.OK) // Test result.
             {
-                string file = openMediaDialog.FileName;
+                var file = openMediaDialog.FileName;
                 try
                 {
-                    string text = File.ReadAllText(file);
+                    var text = File.ReadAllText(file);
                     size = text.Length;
                     image = Image.FromFile(openMediaDialog.FileName);
                     var fileNameArray = file.Replace("\\", "|").Split('|');
@@ -51,20 +44,32 @@ namespace ImageEditor
             return false;
         }
 
-        public bool ExportMedia(FolderBrowserDialog folderSelectDialog, Image media)
+        public bool ExportMedia(FolderBrowserDialog folderSelectDialog, Image media, string extension = null, List<Image> frames = null)
         {
             string selectedPath;
             using (var fbd = folderSelectDialog)
             {
-                DialogResult result = fbd.ShowDialog();
+                var result = fbd.ShowDialog();
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     selectedPath = fbd.SelectedPath;
+
+                    if (extension == ".gif")
+                    {
+                        using (var gif = AnimatedGif.AnimatedGif.Create(selectedPath, 33))
+                        {
+                            foreach (var frame in frames) gif.AddFrame(frame, -1, GifQuality.Bit8);
+                        }
+
+                        return true;
+                    }
+
                     media.Save(selectedPath + "\\" + media.Tag);
                     return true;
                 }
             }
+
             return false;
         }
     }
