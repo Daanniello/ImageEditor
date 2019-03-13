@@ -12,73 +12,34 @@ namespace ImageEditor
 {
     class MediaEditor
     {
-        private MediaPorter _mediaPorter;
-        public Media Media;
-       
-        
+        public MediaInformation MediaInformation;
+        private MainView _view;
 
-        public MediaEditor()
+        public MediaEditor(MainView view)
         {
-            Media = new Media();
-            _mediaPorter = new MediaPorter();
+            MediaInformation = new MediaInformation();
+            _view = view;
         }
 
-        public bool OpenMedia(OpenFileDialog openMediaDialog)
-        {           
-            Media.File = _mediaPorter.OpenMedia(openMediaDialog);
-            Media.Extension = Path.GetExtension(openMediaDialog.FileName);
-            if (Media == null) return false;
-
-            if (Media.Extension == ".gif")
-            {
-                Media.Frames = MediaToFrames(Media.File);
-            }
-            else
-            {
-                Media.Frames = new List<Image>();
-                Media.Frames.Add(Media.File);
-            }
-
-            Media.FrameIndex = 0;
-
+        public bool OpenMedia(OpenFileDialog openFileDialog)
+        {
+            MediaInformation = new MediaPorter().Open(openFileDialog);
             return true;
         }
 
-        public bool ExportMedia(FolderBrowserDialog folderSelectDialog)
+        public bool ExportMedia(SaveFileDialog saveFileDialog)
         {
-            if (Media.Extension == ".gif")
-            {
-                return _mediaPorter.ExportMedia(folderSelectDialog, Media.File, Media.Extension, Media.Frames);
-            }
-            return _mediaPorter.ExportMedia(folderSelectDialog, Media.File);
+            return new MediaPorter().Save(saveFileDialog, MediaInformation);
         }
-
-        public List<Image> MediaToFrames(Image media)
-        {
-            List<Image> frames = new List<Image>();
-            int length = media.GetFrameCount(FrameDimension.Time);
-
-            for (int i = 0; i < length; i++)
-            {
-                media.SelectActiveFrame(FrameDimension.Time, i);
-                frames.Add(new Bitmap(media));
-            }
-
-            return frames;
-        }
-
+        
         public bool ApplyFilter(string type)
         {
             Filter filter = Filter.MakeFilter(type);
-
             if (filter == null) return false;
 
-            foreach (int index in Media.SelectedFrames)
-            {
-                Media.Frames[index] = filter.ApplyFilter(Media.Frames[index]);
-            }
-
-            return true;
+            List<Image> frames = MediaInformation.GetSelectedFrames();
+            Queue<Image> updatedFrames = filter.ApplyFilterOnFrames(frames);
+            return MediaInformation.SetSelectedFrames(updatedFrames);
         }
     }
 }
