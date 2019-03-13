@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimatedImage.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\RandomizedFilter.cs" />
     <Compile Include="Filters\InvertedFilter.cs" />
@@ -80,14 +81,13 @@
     <Compile Include="MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Media.cs" />
-    <Compile Include="MediaConverter.cs" />
+    <Compile Include="MediaInformation.cs" />
+    <Compile Include="MediaAdapter.cs" />
     <Compile Include="MediaEditor.cs" />
-    <Compile Include="Porter\GifMediaPorter.cs" />
-    <Compile Include="Porter\IMediaPorter.cs" />
-    <Compile Include="Porter\PngMediaPorter.cs" />
+    <Compile Include="Porter\MediaPorter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticImage.cs" />
     <Compile Include="Tools\Tools.cs" />
     <Compile Include="Tools\Graffiti.cs" />
     <Compile Include="Tools\Eraser.cs" />

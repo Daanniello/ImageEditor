@@ -12,52 +12,24 @@ namespace ImageEditor
 {
     class MediaEditor
     {
-        public Media Media;
-
-        private IMediaPorter _porter;
+        public MediaInformation MediaInformation;
         private MainView _view;
 
         public MediaEditor(MainView view)
         {
+            MediaInformation = new MediaInformation();
             _view = view;
         }
 
-        private IMediaPorter MakePorter(string type)
+        public bool OpenMedia(OpenFileDialog openFileDialog)
         {
-            switch (type)
-            {
-                case ".gif":
-                    return new GifMediaPorter();
-                case ".png":
-                    return new PngMediaPorter();
-                default:
-                    throw new InvalidOperationException();
-            }
-        }
-
-        public bool OpenMedia(OpenFileDialog openMediaDialog)
-        {
-            openMediaDialog.Filter = "Image Files (PNG,GIF)|*.PNG;*.GIF";
-            DialogResult result = openMediaDialog.ShowDialog();
-            if (result != DialogResult.OK) return false;
-
-            string extension = Path.GetExtension(openMediaDialog.FileName);
-            _porter = MakePorter(extension);
-
-            // Fill Media object
-            Media = new Media();
-            Media.File = Image.FromFile(openMediaDialog.FileName);
-            Media.Frames = _porter.MediaToFrames(Media.File);
-            Media.Extension = extension;
-            Media.FrameIndex = 0;
-            Media.SelectedFrames = new List<int>(new int[]{ 0 });
-
+            MediaInformation = new MediaPorter().Open(openFileDialog);
             return true;
         }
 
-        public bool ExportMedia(FolderBrowserDialog folderSelectDialog)
+        public bool ExportMedia(SaveFileDialog saveFileDialog)
         {
-            return _porter.ExportMedia(folderSelectDialog, Media.Frames);
+            return new MediaPorter().Save(saveFileDialog, MediaInformation);
         }
         
         public bool ApplyFilter(string type)
@@ -65,9 +37,9 @@ namespace ImageEditor
             Filter filter = Filter.MakeFilter(type);
             if (filter == null) return false;
 
-            List<Image> frames = Media.GetSelectedFrames();
+            List<Image> frames = MediaInformation.GetSelectedFrames();
             Queue<Image> updatedFrames = filter.ApplyFilterOnFrames(frames);
-            return Media.SetSelectedFrames(updatedFrames);
+            return MediaInformation.SetSelectedFrames(updatedFrames);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ImageEditor
 {
-    class Media
+    class MediaInformation
     {
         public Image File;
         public string Extension;
@@ -15,9 +15,13 @@ namespace ImageEditor
         public List<int> SelectedFrames;
         public List<Image> Frames;
 
-        public Media()
+        public MediaInformation(Image file = null, string extension = "")
         {
-
+            File = file;
+            Extension = extension;
+            FrameIndex = 0;
+            SelectedFrames = new List<int>();
+            Frames = new List<Image>();
         }
 
         public List<Image> GetSelectedFrames()

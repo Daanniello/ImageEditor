@@ -26,7 +26,7 @@ namespace ImageEditor
             Console.WriteLine("Clicked on open");
             _mediaEditor.OpenMedia(openFileDialog1);
 
-            if (_mediaEditor.Media.Frames == null) return;
+            if (_mediaEditor.MediaInformation.Frames == null) return;
 
             UpdateMedia();
             UpdateTimeline();
@@ -34,12 +34,12 @@ namespace ImageEditor
 
         private void UpdateMedia()
         {
-            pictureBox1.Image = _mediaEditor.Media.Frames[_mediaEditor.Media.FrameIndex];
+            pictureBox1.Image = _mediaEditor.MediaInformation.Frames[_mediaEditor.MediaInformation.FrameIndex];
         }
 
         private void UpdateTimeline()
         {
-            List<Image> mediaFrames = _mediaEditor.Media.Frames;
+            List<Image> mediaFrames = _mediaEditor.MediaInformation.Frames;
 
             var mediaList = new ImageList();
             mediaList.ImageSize = new Size(96, 96);
@@ -65,7 +65,7 @@ namespace ImageEditor
         private void exportToolStripMenuItem_click(object sender, EventArgs e)
         {
             Console.WriteLine("Clicked on export");
-            _mediaEditor.ExportMedia(folderBrowserDialog1);
+            _mediaEditor.ExportMedia(saveFileDialog1);
         }
 
         private void filterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -90,7 +90,7 @@ namespace ImageEditor
 
         private void ApplyFilter(string type)
         {
-            if (_mediaEditor.Media.Frames == null) return;
+            if (_mediaEditor.MediaInformation.Frames == null) return;
 
             if (_mediaEditor.ApplyFilter(type))
             {
@@ -103,14 +103,14 @@ namespace ImageEditor
         {
             if (listView1.SelectedItems.Count == 0) return;
 
-            _mediaEditor.Media.SelectedFrames = new List<int>();
+            _mediaEditor.MediaInformation.SelectedFrames = new List<int>();
 
             foreach (ListViewItem item in listView1.SelectedItems)
             {
-                _mediaEditor.Media.SelectedFrames.Add(item.Index);
+                _mediaEditor.MediaInformation.SelectedFrames.Add(item.Index);
             }
 
-            _mediaEditor.Media.FrameIndex = listView1.SelectedItems[0].Index;
+            _mediaEditor.MediaInformation.FrameIndex = listView1.SelectedItems[0].Index;
 
             UpdateMedia();
         }
