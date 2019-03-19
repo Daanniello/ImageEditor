@@ -26,7 +26,7 @@ namespace ImageEditor
             Console.WriteLine("Clicked on open");
             _mediaEditor.OpenMedia(openFileDialog1);
 
-            if (_mediaEditor.MediaInformation.Frames == null) return;
+            if (_mediaEditor.MediaInformation.Frames.Count == 0) return;
 
             UpdateMedia();
             UpdateTimeline();
@@ -101,6 +101,14 @@ namespace ImageEditor
 
         private void listView1_MouseClick(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (listView1.FocusedItem.Bounds.Contains(e.Location))
+                {
+                    contextMenuStrip1.Show(Cursor.Position);
+                }
+            }
+
             if (listView1.SelectedItems.Count == 0) return;
 
             _mediaEditor.MediaInformation.SelectedFrames = new List<int>();
@@ -113,6 +121,19 @@ namespace ImageEditor
             _mediaEditor.MediaInformation.FrameIndex = listView1.SelectedItems[0].Index;
 
             UpdateMedia();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();          
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var result = colorDialog1.ShowDialog();
+            if (result != DialogResult.OK) return;
+            colorButton.BackColor = colorDialog1.Color;
+
         }
     }
 }
