@@ -67,7 +67,7 @@ namespace ImageEditor
             }
             else
             {
-                image.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
+                media.Frames[0].Save(fs, System.Drawing.Imaging.ImageFormat.Png);
                 return true;
             }
 

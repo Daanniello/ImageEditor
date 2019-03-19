@@ -162,5 +162,18 @@ namespace ImageEditor
             colorButton.BackColor = colorDialog1.Color;
 
         }
+
+        private void removeFrameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mediaEditor.MediaInformation.Frames.RemoveAt(listView1.SelectedItems[0].Index);
+            InitializeTimeLine();
+        }
+
+        private void addBeforeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var index = listView1.SelectedItems[0].Index;
+            _mediaEditor.MediaInformation.Frames.Insert(index + 1, new Bitmap(_mediaEditor.MediaInformation.Frames[index]));
+            InitializeTimeLine();
+        }
     }
 }

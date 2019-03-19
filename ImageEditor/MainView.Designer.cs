@@ -59,7 +59,7 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addBeforeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addAfterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeFrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.header.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.sidebar.SuspendLayout();
@@ -311,21 +311,23 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addBeforeToolStripMenuItem,
-            this.addAfterToolStripMenuItem});
+            this.removeFrameToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 52);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 80);
             // 
             // addBeforeToolStripMenuItem
             // 
             this.addBeforeToolStripMenuItem.Name = "addBeforeToolStripMenuItem";
-            this.addBeforeToolStripMenuItem.Size = new System.Drawing.Size(154, 24);
-            this.addBeforeToolStripMenuItem.Text = "Add Before";
+            this.addBeforeToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.addBeforeToolStripMenuItem.Text = "Copy Frame";
+            this.addBeforeToolStripMenuItem.Click += new System.EventHandler(this.addBeforeToolStripMenuItem_Click);
             // 
-            // addAfterToolStripMenuItem
+            // removeFrameToolStripMenuItem
             // 
-            this.addAfterToolStripMenuItem.Name = "addAfterToolStripMenuItem";
-            this.addAfterToolStripMenuItem.Size = new System.Drawing.Size(154, 24);
-            this.addAfterToolStripMenuItem.Text = "Add After";
+            this.removeFrameToolStripMenuItem.Name = "removeFrameToolStripMenuItem";
+            this.removeFrameToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.removeFrameToolStripMenuItem.Text = "Remove Frame";
+            this.removeFrameToolStripMenuItem.Click += new System.EventHandler(this.removeFrameToolStripMenuItem_Click);
             // 
             // MainView
             // 
@@ -387,7 +389,7 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem addBeforeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addAfterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeFrameToolStripMenuItem;
     }
 }
 
