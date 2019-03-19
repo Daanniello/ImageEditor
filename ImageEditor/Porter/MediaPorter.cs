@@ -34,7 +34,7 @@ namespace ImageEditor
             openFileDialog.Filter = "Image Files (PNG,GIF)|*.PNG;*.GIF";
             DialogResult result = openFileDialog.ShowDialog();
 
-            if (result != DialogResult.OK) throw new Exception();
+            if (result != DialogResult.OK) return new MediaInformation();
 
             MediaInformation mediaInformation = new MediaInformation();
             mediaInformation.Frames = new MediaAdapter(Image.FromFile(openFileDialog.FileName)).GetFrames();
@@ -44,23 +44,25 @@ namespace ImageEditor
 
         public bool Save(SaveFileDialog saveFileDialog, MediaInformation media)
         {
-            saveFileDialog.Title = "Save File to as...";
-            saveFileDialog.Filter = "PNG Image|*.png|Gif Image|*.gif";
+            if (media.Frames.Count == 0) return false;
+            saveFileDialog.Title = "Save File as...";
+            saveFileDialog.Filter = "PNG Image|*.png";
+            if (media.Frames.Count > 1) saveFileDialog.Filter = "Gif Image|*.gif";
             DialogResult result = saveFileDialog.ShowDialog();
 
+            if (result != DialogResult.OK) return false;
             Image image = media.File;
 
             System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
 
-            if (result != DialogResult.OK) return false;
-
-            if (media.Extension == ".gif")
+            if (media.Frames.Count > 1)
             {
-                using (var gif = AnimatedGif.AnimatedGif.Create("temp", 33))
+                fs.Close();
+                using (var gif = AnimatedGif.AnimatedGif.Create(fs.Name, 100))
                 {
                     foreach (var frame in media.Frames) gif.AddFrame(frame, -1, GifQuality.Bit8);
-                }
-                image.Save("temp", System.Drawing.Imaging.ImageFormat.Gif);
+                    
+                }               
                 return true;
             }
             else
