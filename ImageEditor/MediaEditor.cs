@@ -32,14 +32,19 @@ namespace ImageEditor
             return new MediaPorter().Save(saveFileDialog, MediaInformation);
         }
         
-        public bool ApplyFilter(string type)
+        public bool ApplyFilter(string type, List<int> selectedFrameIndexes)
         {
             Filter filter = Filter.MakeFilter(type);
             if (filter == null) return false;
 
-            List<Image> frames = MediaInformation.GetSelectedFrames();
-            Queue<Image> updatedFrames = filter.ApplyFilterOnFrames(frames);
-            return MediaInformation.SetSelectedFrames(updatedFrames);
+            List<Image> frames = MediaInformation.GetSelectedFrames(selectedFrameIndexes);
+            Queue<Image> updatedFrames = new Queue<Image>();
+            foreach (Image frame in frames)
+            {
+                updatedFrames.Enqueue(filter.ApplyFilter(frame));
+            }
+
+            return MediaInformation.SetSelectedFrames(selectedFrameIndexes, updatedFrames);
         }
     }
 }

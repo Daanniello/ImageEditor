@@ -52,6 +52,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.cycledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.header.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.viewport.SuspendLayout();
@@ -132,7 +133,8 @@
             this.filterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.grayscaleToolStripMenuItem,
             this.invertedToolStripMenuItem,
-            this.randomizedToolStripMenuItem});
+            this.randomizedToolStripMenuItem,
+            this.cycledToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
             this.filterToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.filterToolStripMenuItem.Text = "Filter";
@@ -141,21 +143,21 @@
             // grayscaleToolStripMenuItem
             // 
             this.grayscaleToolStripMenuItem.Name = "grayscaleToolStripMenuItem";
-            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.grayscaleToolStripMenuItem.Text = "Grayscale";
             this.grayscaleToolStripMenuItem.Click += new System.EventHandler(this.grayscaleToolStripMenuItem_Click);
             // 
             // invertedToolStripMenuItem
             // 
             this.invertedToolStripMenuItem.Name = "invertedToolStripMenuItem";
-            this.invertedToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.invertedToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.invertedToolStripMenuItem.Text = "Inverted";
             this.invertedToolStripMenuItem.Click += new System.EventHandler(this.invertedToolStripMenuItem_Click);
             // 
             // randomizedToolStripMenuItem
             // 
             this.randomizedToolStripMenuItem.Name = "randomizedToolStripMenuItem";
-            this.randomizedToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.randomizedToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.randomizedToolStripMenuItem.Text = "Randomized";
             this.randomizedToolStripMenuItem.Click += new System.EventHandler(this.randomizedToolStripMenuItem_Click);
             // 
@@ -249,6 +251,13 @@
             this.imageList1.ImageSize = new System.Drawing.Size(96, 96);
             this.imageList1.TransparentColor = System.Drawing.Color.Silver;
             // 
+            // cycledToolStripMenuItem
+            // 
+            this.cycledToolStripMenuItem.Name = "cycledToolStripMenuItem";
+            this.cycledToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.cycledToolStripMenuItem.Text = "Cycled";
+            this.cycledToolStripMenuItem.Click += new System.EventHandler(this.cycledToolStripMenuItem_Click);
+            // 
             // MainView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -299,6 +308,7 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem cycledToolStripMenuItem;
     }
 }
 
