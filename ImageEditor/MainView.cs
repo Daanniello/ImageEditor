@@ -140,7 +140,10 @@ namespace ImageEditor
                     contextMenuStrip1.Show(Cursor.Position);
                 }
             }
+        }
 
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
             if (listView1.SelectedItems.Count == 0) return;
 
             _mediaEditor.MediaInformation.FrameIndex = listView1.SelectedItems[0].Index;
