@@ -12,7 +12,6 @@ namespace ImageEditor
         public Image File;
         public string Extension;
         public int FrameIndex;
-        public List<int> SelectedFrames;
         public List<Image> Frames;
 
         public MediaInformation(Image file = null, string extension = "")
@@ -20,16 +19,15 @@ namespace ImageEditor
             File = file;
             Extension = extension;
             FrameIndex = 0;
-            SelectedFrames = new List<int>();
             Frames = new List<Image>();
         }
 
-        public List<Image> GetSelectedFrames()
+        public List<Image> GetSelectedFrames(List<int> selectedFrameIndexes)
         {
             List<Image> frames = new List<Image>();
             for (int i = 0; i < Frames.Count; i++)
             {
-                if (SelectedFrames.IndexOf(i) > -1)
+                if (selectedFrameIndexes.IndexOf(i) > -1)
                 {
                     frames.Add(Frames[i]);
                 }
@@ -37,9 +35,9 @@ namespace ImageEditor
             return frames;
         }
 
-        public bool SetSelectedFrames(Queue<Image> updatedFrames)
+        public bool SetSelectedFrames(List<int> selectedFrameIndexes, Queue<Image> updatedFrames)
         {
-            foreach (int i in SelectedFrames)
+            foreach (int i in selectedFrameIndexes)
             {
                 Frames[i] = updatedFrames.Dequeue();
             }

@@ -29,7 +29,7 @@ namespace ImageEditor
             if (_mediaEditor.MediaInformation.Frames.Count == 0) return;
 
             UpdateMedia();
-            UpdateTimeline();
+            InitializeTimeLine();
         }
 
         private void UpdateMedia()
@@ -37,15 +37,13 @@ namespace ImageEditor
             pictureBox1.Image = _mediaEditor.MediaInformation.Frames[_mediaEditor.MediaInformation.FrameIndex];
         }
 
-        private void UpdateTimeline()
+        private void InitializeTimeLine()
         {
             List<Image> mediaFrames = _mediaEditor.MediaInformation.Frames;
 
             var mediaList = new ImageList();
             mediaList.ImageSize = new Size(96, 96);
             listView1.Clear();
-            listView1.LargeImageList = mediaList;
-            
 
             for (var x = 0; x < mediaFrames.Count; x++)
             {
@@ -53,6 +51,8 @@ namespace ImageEditor
                 mediaList.Images.Add(mediaFrames[x]);
 
             }
+            listView1.LargeImageList = mediaList;
+
             for (var x = 0; x < mediaFrames.Count; x++)
             {
                 var item = new ListViewItem();
@@ -60,6 +60,23 @@ namespace ImageEditor
                 item.Text = x.ToString();
                 listView1.Items.Add(item);
             }
+        }
+
+        private void updateTimeLine()
+        {
+            List<Image> mediaFrames = _mediaEditor.MediaInformation.Frames;
+
+            var mediaList = new ImageList();
+            mediaList.ImageSize = new Size(96, 96);
+
+            for (var x = 0; x < mediaFrames.Count; x++)
+            {
+                Image image = mediaFrames[x];
+                mediaList.Images.Add(mediaFrames[x]);
+
+            }
+
+            listView1.LargeImageList = mediaList;
         }
 
         private void exportToolStripMenuItem_click(object sender, EventArgs e)
@@ -88,14 +105,29 @@ namespace ImageEditor
             ApplyFilter("Randomized");
         }
 
+        private void cycledToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ApplyFilter("Cycled");
+        }
+
         private void ApplyFilter(string type)
         {
+            // Check if the frames exist
             if (_mediaEditor.MediaInformation.Frames == null) return;
 
-            if (_mediaEditor.ApplyFilter(type))
+            // Gets the selected frames which should get a filter applied
+            List<int> selectedFrameIndexes = new List<int>();
+            foreach (ListViewItem item in listView1.SelectedItems)
+            {
+                selectedFrameIndexes.Add(item.Index);
+            }
+            if (selectedFrameIndexes.Count < 1) return;
+
+            // Apply the filter and update the UI
+            if (_mediaEditor.ApplyFilter(type, selectedFrameIndexes))
             {
                 UpdateMedia();
-                UpdateTimeline();
+                updateTimeLine();
             };
         }
 
@@ -111,15 +143,7 @@ namespace ImageEditor
 
             if (listView1.SelectedItems.Count == 0) return;
 
-            _mediaEditor.MediaInformation.SelectedFrames = new List<int>();
-
-            foreach (ListViewItem item in listView1.SelectedItems)
-            {
-                _mediaEditor.MediaInformation.SelectedFrames.Add(item.Index);
-            }
-
             _mediaEditor.MediaInformation.FrameIndex = listView1.SelectedItems[0].Index;
-
             UpdateMedia();
         }
 

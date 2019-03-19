@@ -52,6 +52,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.cycledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -144,7 +145,7 @@
             this.grayscaleToolStripMenuItem,
             this.invertedToolStripMenuItem,
             this.randomizedToolStripMenuItem,
-            this.testFilterToolStripMenuItem});
+            this.cycledToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
             this.filterToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.filterToolStripMenuItem.Text = "Filter";
@@ -262,6 +263,12 @@
             this.imageList1.ImageSize = new System.Drawing.Size(96, 96);
             this.imageList1.TransparentColor = System.Drawing.Color.Silver;
             // 
+            // cycledToolStripMenuItem
+            // 
+            this.cycledToolStripMenuItem.Name = "cycledToolStripMenuItem";
+            this.cycledToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.cycledToolStripMenuItem.Text = "Cycled";
+            this.cycledToolStripMenuItem.Click += new System.EventHandler(this.cycledToolStripMenuItem_Click);
             // testFilterToolStripMenuItem
             // 
 
@@ -370,6 +377,7 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem cycledToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testFilterToolStripMenuItem;
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.Panel panel1;

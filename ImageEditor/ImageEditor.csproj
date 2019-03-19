@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="AnimatedImage.cs" />
     <Compile Include="Filters\Filter.cs" />
+    <Compile Include="Filters\CycledFilter.cs" />
     <Compile Include="Filters\RandomizedFilter.cs" />
     <Compile Include="Filters\InvertedFilter.cs" />
     <Compile Include="Filters\GrayscaleFilter.cs" />

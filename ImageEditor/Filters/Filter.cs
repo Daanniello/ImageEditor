@@ -20,22 +20,14 @@ namespace ImageEditor
                     return new InvertedFilter();
                 case "Randomized":
                     return new RandomizedFilter();
+                case "Cycled":
+                    return new CycledFilter();
                 default:
                     throw new InvalidOperationException();
             }
         }
 
-        public Queue<Image> ApplyFilterOnFrames(List<Image> frames)
-        {
-            Queue<Image> updatedFrames = new Queue<Image>();
-            foreach (Image image in frames)
-            {
-                updatedFrames.Enqueue(ApplyFIlterOnImage(image));
-            }
-            return updatedFrames;
-        }
-
-        public Image ApplyFIlterOnImage(Image image)
+        public Image ApplyFilter(Image image)
         {
             Bitmap bitmap = image as Bitmap;
 
