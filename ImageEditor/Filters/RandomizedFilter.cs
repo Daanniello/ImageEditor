@@ -23,9 +23,9 @@ namespace ImageEditor
         private void SetRandomOffset()
         {
             Random r = new Random();
-            offsetR = r.Next(100, 200);
-            offsetG = r.Next(100, 200);
-            offsetB = r.Next(100, 200);
+            offsetR = r.Next(0, 255);
+            offsetG = r.Next(0, 255);
+            offsetB = r.Next(0, 255);
         }
     }
 }
