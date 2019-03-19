@@ -264,10 +264,7 @@
             // 
             // testFilterToolStripMenuItem
             // 
-            this.testFilterToolStripMenuItem.Name = "testFilterToolStripMenuItem";
-            this.testFilterToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.testFilterToolStripMenuItem.Text = "TestFilter";
-            this.testFilterToolStripMenuItem.Click += new System.EventHandler(this.testFilterToolStripMenuItem_Click);
+
             // 
             // colorButton
             // 

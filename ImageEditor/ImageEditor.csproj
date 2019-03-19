@@ -75,7 +75,6 @@
     <Compile Include="Filters\RandomizedFilter.cs" />
     <Compile Include="Filters\InvertedFilter.cs" />
     <Compile Include="Filters\GrayscaleFilter.cs" />
-    <Compile Include="Filters\TestFilter.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>
