@@ -38,6 +38,7 @@ namespace ImageEditor
 
             MediaInformation mediaInformation = new MediaInformation();
             mediaInformation.Frames = new MediaAdapter(Image.FromFile(openFileDialog.FileName)).GetFrames();
+            mediaInformation.File = Image.FromFile(openFileDialog.FileName);
 
             return mediaInformation;
         }
@@ -55,10 +56,14 @@ namespace ImageEditor
 
             System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
 
+            PropertyItem item = media.File.GetPropertyItem(0x5100);
+            // Time is in milliseconds
+            var delay = (item.Value[0] + item.Value[1] * 256) * 10;
+
             if (media.Frames.Count > 1)
             {
                 fs.Close();
-                using (var gif = AnimatedGif.AnimatedGif.Create(fs.Name, 100))
+                using (var gif = AnimatedGif.AnimatedGif.Create(fs.Name, delay))
                 {
                     foreach (var frame in media.Frames) gif.AddFrame(frame, -1, GifQuality.Bit8);
                     
