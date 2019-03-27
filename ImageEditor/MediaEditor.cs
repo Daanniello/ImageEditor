@@ -15,11 +15,14 @@ namespace ImageEditor
     {
         public MediaInformation MediaInformation;
         private MainView _view;
+        private Tool _currentTool;
+        private Color _currentColor = Color.Black;
 
         public MediaEditor(MainView view)
         {
             MediaInformation = new MediaInformation();
             _view = view;
+            _currentTool = new Pencil();
         }
 
         public bool OpenMedia(OpenFileDialog openFileDialog)
@@ -46,6 +49,17 @@ namespace ImageEditor
             }
 
             return MediaInformation.SetSelectedFrames(selectedFrameIndexes, updatedFrames);
+        }
+
+        public void SetTool(Tool tool)
+        {
+            _currentTool = tool;
+        }
+
+        public void UseTool(Point previous, Point current, ref Image image)
+        {
+            _currentTool.ApplyTool(ref image, _currentColor, previous, current);
+            MediaInformation.SetCurrentFrame(image);
         }
     }
 }

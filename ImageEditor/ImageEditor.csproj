@@ -90,8 +90,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticImage.cs" />
-    <Compile Include="Tools\Tools.cs" />
-    <Compile Include="Tools\Graffiti.cs" />
+    <Compile Include="Tools\Tool.cs" />
+    <Compile Include="Tools\SprayCan.cs" />
     <Compile Include="Tools\Eraser.cs" />
     <Compile Include="Tools\Pencil.cs" />
     <EmbeddedResource Include="MainView.resx">

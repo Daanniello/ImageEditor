@@ -64,6 +64,9 @@
             this.addBeforeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeFrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.PencilButton = new System.Windows.Forms.Button();
+            this.EraserButton = new System.Windows.Forms.Button();
+            this.SpraycanButton = new System.Windows.Forms.Button();
             this.header.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.sidebar.SuspendLayout();
@@ -95,7 +98,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -108,39 +111,39 @@
             this.exportToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.toolmenu.Name = "toolmenu";
-            this.toolmenu.Size = new System.Drawing.Size(44, 24);
+            this.toolmenu.Size = new System.Drawing.Size(37, 20);
             this.toolmenu.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.importToolStripMenuItem.Text = "Import";
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.exportToolStripMenuItem.Text = "Export";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -153,7 +156,7 @@
             this.cycledToolStripMenuItem,
             this.removeColorToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.filterToolStripMenuItem.Text = "Filter";
             this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
             // 
@@ -161,6 +164,7 @@
             // 
             this.grayscaleToolStripMenuItem.Name = "grayscaleToolStripMenuItem";
             this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+
             this.grayscaleToolStripMenuItem.Text = "Grayscale";
             this.grayscaleToolStripMenuItem.Click += new System.EventHandler(this.grayscaleToolStripMenuItem_Click);
             // 
@@ -174,14 +178,18 @@
             // randomizedToolStripMenuItem
             // 
             this.randomizedToolStripMenuItem.Name = "randomizedToolStripMenuItem";
+
             this.randomizedToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+
             this.randomizedToolStripMenuItem.Text = "Randomized";
             this.randomizedToolStripMenuItem.Click += new System.EventHandler(this.randomizedToolStripMenuItem_Click);
             // 
             // cycledToolStripMenuItem
             // 
             this.cycledToolStripMenuItem.Name = "cycledToolStripMenuItem";
+
             this.cycledToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+
             this.cycledToolStripMenuItem.Text = "Cycled";
             this.cycledToolStripMenuItem.Click += new System.EventHandler(this.cycledToolStripMenuItem_Click);
             // 
@@ -197,13 +205,13 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.helpToolStripMenuItem1});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // helpToolStripMenuItem1
             // 
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(116, 26);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(99, 22);
             this.helpToolStripMenuItem1.Text = "Help";
             // 
             // splitter
@@ -219,7 +227,13 @@
             // sidebar
             // 
             this.sidebar.BackColor = System.Drawing.Color.LightGray;
+
             this.sidebar.Controls.Add(this.panel2);
+
+            this.sidebar.Controls.Add(this.SpraycanButton);
+            this.sidebar.Controls.Add(this.EraserButton);
+            this.sidebar.Controls.Add(this.PencilButton);
+
             this.sidebar.Controls.Add(this.panel1);
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidebar.Location = new System.Drawing.Point(0, 25);
@@ -289,6 +303,9 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // openFileDialog1
             // 
@@ -343,18 +360,23 @@
             this.addBeforeToolStripMenuItem,
             this.removeFrameToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
+
             this.contextMenuStrip1.Size = new System.Drawing.Size(178, 52);
+
             // 
             // addBeforeToolStripMenuItem
             // 
             this.addBeforeToolStripMenuItem.Name = "addBeforeToolStripMenuItem";
+
             this.addBeforeToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
+
             this.addBeforeToolStripMenuItem.Text = "Copy Frame";
             this.addBeforeToolStripMenuItem.Click += new System.EventHandler(this.addBeforeToolStripMenuItem_Click);
             // 
             // removeFrameToolStripMenuItem
             // 
             this.removeFrameToolStripMenuItem.Name = "removeFrameToolStripMenuItem";
+
             this.removeFrameToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
             this.removeFrameToolStripMenuItem.Text = "Remove Frame";
             this.removeFrameToolStripMenuItem.Click += new System.EventHandler(this.removeFrameToolStripMenuItem_Click);
@@ -369,6 +391,38 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(96, 156);
             this.panel2.TabIndex = 2;
+
+            // 
+            // PencilButton
+            // 
+            this.PencilButton.Location = new System.Drawing.Point(12, 6);
+            this.PencilButton.Name = "PencilButton";
+            this.PencilButton.Size = new System.Drawing.Size(75, 23);
+            this.PencilButton.TabIndex = 2;
+            this.PencilButton.Text = "Pencil";
+            this.PencilButton.UseVisualStyleBackColor = true;
+            this.PencilButton.Click += new System.EventHandler(this.pencilButton_Click);
+            // 
+            // EraserButton
+            // 
+            this.EraserButton.Location = new System.Drawing.Point(12, 35);
+            this.EraserButton.Name = "EraserButton";
+            this.EraserButton.Size = new System.Drawing.Size(75, 23);
+            this.EraserButton.TabIndex = 3;
+            this.EraserButton.Text = "Eraser";
+            this.EraserButton.UseVisualStyleBackColor = true;
+            this.EraserButton.Click += new System.EventHandler(this.eraseButton_Click);
+            // 
+            // SpraycanButton
+            // 
+            this.SpraycanButton.Location = new System.Drawing.Point(12, 64);
+            this.SpraycanButton.Name = "SpraycanButton";
+            this.SpraycanButton.Size = new System.Drawing.Size(75, 23);
+            this.SpraycanButton.TabIndex = 4;
+            this.SpraycanButton.Text = "Airbrush";
+            this.SpraycanButton.UseVisualStyleBackColor = true;
+            this.SpraycanButton.Click += new System.EventHandler(this.sprayCanButton_Click);
+
             // 
             // MainView
             // 
@@ -432,9 +486,15 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem addBeforeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeFrameToolStripMenuItem;
+
         private System.Windows.Forms.ToolStripMenuItem removeColorToolStripMenuItem;
         private System.Windows.Forms.Button colorPickerButton;
         private System.Windows.Forms.Panel panel2;
+
+        private System.Windows.Forms.Button SpraycanButton;
+        private System.Windows.Forms.Button EraserButton;
+        private System.Windows.Forms.Button PencilButton;
+
     }
 }
 

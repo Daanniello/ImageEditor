@@ -56,9 +56,15 @@ namespace ImageEditor
 
             System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
 
-            PropertyItem item = media.File.GetPropertyItem(0x5100);
-            // Time is in milliseconds
-            var delay = (item.Value[0] + item.Value[1] * 256) * 10;
+            var delay = 100;
+
+            try
+            {
+                PropertyItem item = media.File.GetPropertyItem(0x5100);
+                // Time is in milliseconds
+                delay = (item.Value[0] + item.Value[1] * 256) * 10;
+            }
+            catch (Exception exc) { Console.WriteLine(exc); }
 
             if (media.Frames.Count > 1)
             {
