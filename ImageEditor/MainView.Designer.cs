@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             this.header = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolmenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -230,13 +231,14 @@
             // 
             this.colorPickerButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.colorPickerButton.BackColor = System.Drawing.Color.Black;
+            this.colorPickerButton.BackColor = System.Drawing.Color.LightGray;
+            this.colorPickerButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("colorPickerButton.BackgroundImage")));
+            this.colorPickerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.colorPickerButton.CausesValidation = false;
-            this.colorPickerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.colorPickerButton.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.colorPickerButton.Location = new System.Drawing.Point(14, 3);
+            this.colorPickerButton.Location = new System.Drawing.Point(14, 14);
             this.colorPickerButton.Name = "colorPickerButton";
-            this.colorPickerButton.Size = new System.Drawing.Size(65, 56);
+            this.colorPickerButton.Size = new System.Drawing.Size(30, 30);
             this.colorPickerButton.TabIndex = 1;
             this.colorPickerButton.UseVisualStyleBackColor = false;
             this.colorPickerButton.Click += new System.EventHandler(this.colorPickerButton_Click);
@@ -362,10 +364,10 @@
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.colorPickerButton);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 153);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(96, 66);
+            this.panel2.Size = new System.Drawing.Size(96, 156);
             this.panel2.TabIndex = 2;
             // 
             // MainView

@@ -193,14 +193,15 @@ namespace ImageEditor
             void PictureBoxMouseMove(object sender1, MouseEventArgs e1)
             {
                 var pixel = b.GetPixel(e1.X, e1.Y);
-                colorPickerButton.BackColor = pixel;
+                colorButton.BackColor = pixel;
                 color = pixel;
             }
 
             void PictureBoxClick(object sender2, EventArgs e2)
             {
-                colorPickerButton.BackColor = color;
+                colorButton.BackColor = color;
                 pictureBox1.MouseMove -= PictureBoxMouseMove;
+                pictureBox1.Click -= PictureBoxClick;
             }
         }
     }
