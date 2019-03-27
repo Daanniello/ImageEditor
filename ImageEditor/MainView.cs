@@ -183,6 +183,7 @@ namespace ImageEditor
 
         private void colorPickerButton_Click(object sender, EventArgs e)
         {
+            if (pictureBox1.Image == null) return;
             var color = new Color();
             Bitmap b = pictureBox1.Image as Bitmap;
 
