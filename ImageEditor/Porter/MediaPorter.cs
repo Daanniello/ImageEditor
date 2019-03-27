@@ -64,7 +64,7 @@ namespace ImageEditor
                 // Time is in milliseconds
                 delay = (item.Value[0] + item.Value[1] * 256) * 10;
             }
-            catch (Exception exc) { }
+            catch (Exception exc) { Console.WriteLine(exc); }
 
             if (media.Frames.Count > 1)
             {
