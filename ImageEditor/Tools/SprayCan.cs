@@ -11,14 +11,21 @@ namespace ImageEditor
     {
         override public void ApplyTool(ref Image image, Color color, Point previous, Point current)
         {
-            throw new NotImplementedException();
-            //bmp.SetPixel(x, y, Color.Black);
-            //bmp.SetPixel(x+1, y, Color.Black);
-            //bmp.SetPixel(x+2, y, Color.Black);
-            //bmp.SetPixel(x+3, y, Color.Black);
-            //bmp.SetPixel(x+4, y, Color.Black);
-            //bmp.SetPixel(x+5, y, Color.Black);
-            //return null;
+            var _rnd = new Random();
+            Pen airbrush = new Pen(color);
+            using (Graphics g = Graphics.FromImage(image))
+            {
+                for (int i = 0; i < 40; ++i)
+                {
+                    double theta = _rnd.NextDouble() * (Math.PI * 2);
+                    double r = _rnd.NextDouble() * 15; // 15 is the radius
+
+                    double x = current.X + Math.Cos(theta) * r;
+                    double y = current.Y + Math.Sin(theta) * r;
+
+                    g.DrawEllipse(airbrush, new Rectangle((int)x - 1, (int)y - 1, 1, 1));
+                }
+            }
         }
     }
 }
