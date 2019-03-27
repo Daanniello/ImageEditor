@@ -9,7 +9,7 @@ namespace ImageEditor
 {
     class Eraser : Tool
     {
-        override public Bitmap ApplyTool(Image image, Color color, Point previous, int x, int y)
+        override public void ApplyTool(ref Image image, Color color, Point previous, int x, int y)
         {
             throw new NotImplementedException();
         }

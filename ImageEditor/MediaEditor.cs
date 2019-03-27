@@ -50,12 +50,11 @@ namespace ImageEditor
             _currentTool = tool;
         }
 
-        public Bitmap UseTool(Point p, int x, int y)
+        public void UseTool(Point p, int x, int y, ref Image image)
         {
-            var img = _currentTool.ApplyTool(MediaInformation.GetCurrentFrame(), _currentColor, p, x, y);
-            MediaInformation.SetCurrentFrame(img);
-            return img;
-            
+            _currentTool.ApplyTool(ref image, _currentColor, p, x, y);
+            MediaInformation.SetCurrentFrame(image);
+
         }
     }
 }

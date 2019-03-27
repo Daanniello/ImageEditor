@@ -115,6 +115,7 @@ namespace ImageEditor
 
             UpdateMedia();
         }
+
         private bool useTool = false;
         private Point? _Previous = null;
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -132,7 +133,8 @@ namespace ImageEditor
             if (_Previous != null)
             {
                 Point p = e.Location;
-                pictureBox1.Image = _mediaEditor.UseTool(_Previous.Value, p.X, p.Y);
+                var image = pictureBox1.Image;
+                _mediaEditor.UseTool(_Previous.Value, p.X, p.Y, ref image);
             }
             if(useTool)
                 _Previous = e.Location;

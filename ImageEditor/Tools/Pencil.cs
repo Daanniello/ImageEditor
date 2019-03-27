@@ -9,16 +9,12 @@ namespace ImageEditor
 {
     class Pencil : Tool
     {
-        override public Bitmap ApplyTool(Image image, Color color, Point previous, int x, int y)
+        override public void ApplyTool(ref Image image, Color color, Point previous, int x, int y)
         {
-            Bitmap bmp = new Bitmap(image);
-            using (Graphics g = Graphics.FromImage(bmp))
+            using (Graphics g = Graphics.FromImage(image))
             {
                 g.DrawLine(Pens.Black, previous.X, previous.Y, x, y);
             }
-
-                //bmp.SetPixel(x, y, Color.Black);
-                return bmp;
         }
     }
 }
