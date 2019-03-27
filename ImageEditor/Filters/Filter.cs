@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using ImageEditor.Filters;
 
 namespace ImageEditor
 {
@@ -22,6 +23,8 @@ namespace ImageEditor
                     return new RandomizedFilter();
                 case "Cycled":
                     return new CycledFilter();
+                case "RemoveColor":
+                    return new RemoveColor();
                 default:
                     throw new InvalidOperationException();
             }
@@ -55,14 +58,16 @@ namespace ImageEditor
             byte[] pixel = CalculatePixel(
                 imageBytes[i],
                 imageBytes[i + 1],
-                imageBytes[i + 2]
+                imageBytes[i + 2],
+                imageBytes[i + 3]
                 );
 
             imageBytes[i] = pixel[0];
             imageBytes[i + 1] = pixel[1];
             imageBytes[i + 2] = pixel[2];
+            imageBytes[i + 3] = pixel[3];
         }
 
-        protected abstract byte[] CalculatePixel(byte r, byte g, byte b);
+        protected abstract byte[] CalculatePixel(byte r, byte g, byte b, byte a);
     }
 }

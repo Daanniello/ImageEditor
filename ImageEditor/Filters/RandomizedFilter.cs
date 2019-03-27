@@ -8,7 +8,7 @@ namespace ImageEditor
         private int offsetG = -1;
         private int offsetB = -1;
 
-        protected override byte[] CalculatePixel(byte r, byte g, byte b)
+        protected override byte[] CalculatePixel(byte r, byte g, byte b, byte a)
         {
             if (offsetR == -1) SetRandomOffset();
 
@@ -16,7 +16,8 @@ namespace ImageEditor
             {
                 Convert.ToByte((r + offsetR) % 255),
                 Convert.ToByte((g + offsetG) % 255),
-                Convert.ToByte((b + offsetB) % 255)
+                Convert.ToByte((b + offsetB) % 255),
+                Convert.ToByte(a)
             };
         }
 

@@ -175,5 +175,32 @@ namespace ImageEditor
             _mediaEditor.MediaInformation.Frames.Insert(index + 1, new Bitmap(_mediaEditor.MediaInformation.Frames[index]));
             InitializeTimeLine();
         }
+
+        private void removeColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {                 
+            ApplyFilter("RemoveColor");
+        }
+
+        private void colorPickerButton_Click(object sender, EventArgs e)
+        {
+            var color = new Color();
+            Bitmap b = pictureBox1.Image as Bitmap;
+
+            pictureBox1.MouseMove += PictureBoxMouseMove;
+            pictureBox1.Click += PictureBoxClick;
+
+            void PictureBoxMouseMove(object sender1, MouseEventArgs e1)
+            {
+                var pixel = b.GetPixel(e1.X, e1.Y);
+                colorPickerButton.BackColor = pixel;
+                color = pixel;
+            }
+
+            void PictureBoxClick(object sender2, EventArgs e2)
+            {
+                colorPickerButton.BackColor = color;
+                pictureBox1.MouseMove -= PictureBoxMouseMove;
+            }
+        }
     }
 }

@@ -42,10 +42,12 @@
             this.invertedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randomizedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cycledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.splitter = new System.Windows.Forms.Splitter();
             this.sidebar = new System.Windows.Forms.Panel();
+            this.colorPickerButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.colorButton = new System.Windows.Forms.Button();
             this.viewport = new System.Windows.Forms.Panel();
@@ -60,6 +62,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addBeforeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeFrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.header.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.sidebar.SuspendLayout();
@@ -68,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.timeline.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // header
@@ -145,7 +149,8 @@
             this.grayscaleToolStripMenuItem,
             this.invertedToolStripMenuItem,
             this.randomizedToolStripMenuItem,
-            this.cycledToolStripMenuItem});
+            this.cycledToolStripMenuItem,
+            this.removeColorToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
             this.filterToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.filterToolStripMenuItem.Text = "Filter";
@@ -154,30 +159,37 @@
             // grayscaleToolStripMenuItem
             // 
             this.grayscaleToolStripMenuItem.Name = "grayscaleToolStripMenuItem";
-            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.grayscaleToolStripMenuItem.Text = "Grayscale";
             this.grayscaleToolStripMenuItem.Click += new System.EventHandler(this.grayscaleToolStripMenuItem_Click);
             // 
             // invertedToolStripMenuItem
             // 
             this.invertedToolStripMenuItem.Name = "invertedToolStripMenuItem";
-            this.invertedToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.invertedToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.invertedToolStripMenuItem.Text = "Inverted";
             this.invertedToolStripMenuItem.Click += new System.EventHandler(this.invertedToolStripMenuItem_Click);
             // 
             // randomizedToolStripMenuItem
             // 
             this.randomizedToolStripMenuItem.Name = "randomizedToolStripMenuItem";
-            this.randomizedToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.randomizedToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.randomizedToolStripMenuItem.Text = "Randomized";
             this.randomizedToolStripMenuItem.Click += new System.EventHandler(this.randomizedToolStripMenuItem_Click);
             // 
             // cycledToolStripMenuItem
             // 
             this.cycledToolStripMenuItem.Name = "cycledToolStripMenuItem";
-            this.cycledToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.cycledToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.cycledToolStripMenuItem.Text = "Cycled";
             this.cycledToolStripMenuItem.Click += new System.EventHandler(this.cycledToolStripMenuItem_Click);
+            // 
+            // removeColorToolStripMenuItem
+            // 
+            this.removeColorToolStripMenuItem.Name = "removeColorToolStripMenuItem";
+            this.removeColorToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.removeColorToolStripMenuItem.Text = "Remove Color";
+            this.removeColorToolStripMenuItem.Click += new System.EventHandler(this.removeColorToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -206,12 +218,28 @@
             // sidebar
             // 
             this.sidebar.BackColor = System.Drawing.Color.LightGray;
+            this.sidebar.Controls.Add(this.panel2);
             this.sidebar.Controls.Add(this.panel1);
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidebar.Location = new System.Drawing.Point(0, 25);
             this.sidebar.Name = "sidebar";
             this.sidebar.Size = new System.Drawing.Size(96, 285);
             this.sidebar.TabIndex = 6;
+            // 
+            // colorPickerButton
+            // 
+            this.colorPickerButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.colorPickerButton.BackColor = System.Drawing.Color.Black;
+            this.colorPickerButton.CausesValidation = false;
+            this.colorPickerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.colorPickerButton.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.colorPickerButton.Location = new System.Drawing.Point(14, 3);
+            this.colorPickerButton.Name = "colorPickerButton";
+            this.colorPickerButton.Size = new System.Drawing.Size(65, 56);
+            this.colorPickerButton.TabIndex = 1;
+            this.colorPickerButton.UseVisualStyleBackColor = false;
+            this.colorPickerButton.Click += new System.EventHandler(this.colorPickerButton_Click);
             // 
             // panel1
             // 
@@ -313,21 +341,32 @@
             this.addBeforeToolStripMenuItem,
             this.removeFrameToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(178, 52);
             // 
             // addBeforeToolStripMenuItem
             // 
             this.addBeforeToolStripMenuItem.Name = "addBeforeToolStripMenuItem";
-            this.addBeforeToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.addBeforeToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
             this.addBeforeToolStripMenuItem.Text = "Copy Frame";
             this.addBeforeToolStripMenuItem.Click += new System.EventHandler(this.addBeforeToolStripMenuItem_Click);
             // 
             // removeFrameToolStripMenuItem
             // 
             this.removeFrameToolStripMenuItem.Name = "removeFrameToolStripMenuItem";
-            this.removeFrameToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.removeFrameToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
             this.removeFrameToolStripMenuItem.Text = "Remove Frame";
             this.removeFrameToolStripMenuItem.Click += new System.EventHandler(this.removeFrameToolStripMenuItem_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.colorPickerButton);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 153);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(96, 66);
+            this.panel2.TabIndex = 2;
             // 
             // MainView
             // 
@@ -354,6 +393,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.timeline.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -390,6 +430,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem addBeforeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeFrameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeColorToolStripMenuItem;
+        private System.Windows.Forms.Button colorPickerButton;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 
