@@ -16,7 +16,7 @@ namespace ImageEditor
         public MediaInformation MediaInformation;
         private MainView _view;
         private Tool _currentTool;
-        private Color _currentColor = Color.Black;
+        public Color _currentColor = Color.Black;
 
         public MediaEditor(MainView view)
         {

@@ -163,8 +163,8 @@ namespace ImageEditor
         {
             var result = colorDialog1.ShowDialog();
             if (result != DialogResult.OK) return;
+            _mediaEditor._currentColor = colorDialog1.Color;
             colorButton.BackColor = colorDialog1.Color;
-
         }
 
         private void removeFrameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -197,9 +197,30 @@ namespace ImageEditor
 
             void PictureBoxMouseMove(object sender1, MouseEventArgs e1)
             {
-                var pixel = b.GetPixel(e1.X, e1.Y);
-                colorButton.BackColor = pixel;
-                color = pixel;
+                Point curr = e1.Location;
+                if (horizontal)
+                {         
+                    curr.X = (int)(curr.X / _scaleFactor);
+                    curr.Y = (int)((curr.Y - _filler) / _scaleFactor);
+                }
+                else if (!horizontal)
+                {  
+                    curr.X = (int)((curr.X - _filler) / _scaleFactor);
+                    curr.Y = (int)(curr.Y / _scaleFactor);
+                }
+
+                try
+                {
+                    var pixel = b.GetPixel(curr.X, curr.Y);
+                    colorButton.BackColor = pixel;
+                    color = pixel;
+                }
+                catch
+                {
+
+                }
+                
+               
             }
 
             void PictureBoxClick(object sender2, EventArgs e2)
@@ -207,8 +228,8 @@ namespace ImageEditor
                 colorButton.BackColor = color;
                 pictureBox1.MouseMove -= PictureBoxMouseMove;
                 pictureBox1.Click -= PictureBoxClick;
-             }
-             }
+            }
+        }
 
         private bool useTool = false;
         private Point _previous;
@@ -257,6 +278,7 @@ namespace ImageEditor
         private void pencilButton_Click(object sender, EventArgs e)
         {
             var tool = new Pencil();
+            _mediaEditor._currentColor = colorButton.BackColor;
             _mediaEditor.SetTool(tool);
         }
 
