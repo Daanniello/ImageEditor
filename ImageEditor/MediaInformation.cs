@@ -45,5 +45,15 @@ namespace ImageEditor
             }
             return true;
         }
+
+        public Image GetCurrentFrame()
+        {
+            return Frames[FrameIndex];
+        }
+
+        public void SetCurrentFrame(Image image)
+        {
+            Frames[FrameIndex] = image;
+        }
     }
 }

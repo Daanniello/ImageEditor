@@ -52,8 +52,12 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.pencilButton = new System.Windows.Forms.Button();
+            this.sprayCanButton = new System.Windows.Forms.Button();
+            this.eraseButton = new System.Windows.Forms.Button();
             this.header.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.sidebar.SuspendLayout();
             this.viewport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.timeline.SuspendLayout();
@@ -186,6 +190,9 @@
             // sidebar
             // 
             this.sidebar.BackColor = System.Drawing.Color.LightGray;
+            this.sidebar.Controls.Add(this.eraseButton);
+            this.sidebar.Controls.Add(this.sprayCanButton);
+            this.sidebar.Controls.Add(this.pencilButton);
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidebar.Location = new System.Drawing.Point(0, 25);
             this.sidebar.Name = "sidebar";
@@ -212,6 +219,9 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // openFileDialog1
             // 
@@ -249,6 +259,37 @@
             this.imageList1.ImageSize = new System.Drawing.Size(96, 96);
             this.imageList1.TransparentColor = System.Drawing.Color.Silver;
             // 
+            // pencilButton
+            // 
+            this.pencilButton.Location = new System.Drawing.Point(13, 12);
+            this.pencilButton.Name = "pencilButton";
+            this.pencilButton.Size = new System.Drawing.Size(75, 23);
+            this.pencilButton.TabIndex = 0;
+            this.pencilButton.Text = "Pencil";
+            this.pencilButton.UseVisualStyleBackColor = true;
+            this.pencilButton.Click += new System.EventHandler(this.pencilButton_Click);
+            // 
+            // sprayCanButton
+            // 
+            this.sprayCanButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sprayCanButton.Location = new System.Drawing.Point(13, 42);
+            this.sprayCanButton.Name = "sprayCanButton";
+            this.sprayCanButton.Size = new System.Drawing.Size(75, 23);
+            this.sprayCanButton.TabIndex = 1;
+            this.sprayCanButton.Text = "Spray Can";
+            this.sprayCanButton.UseVisualStyleBackColor = true;
+            this.sprayCanButton.Click += new System.EventHandler(this.sprayCanButton_Click);
+            // 
+            // eraseButton
+            // 
+            this.eraseButton.Location = new System.Drawing.Point(13, 72);
+            this.eraseButton.Name = "eraseButton";
+            this.eraseButton.Size = new System.Drawing.Size(75, 23);
+            this.eraseButton.TabIndex = 2;
+            this.eraseButton.Text = "Eraser";
+            this.eraseButton.UseVisualStyleBackColor = true;
+            this.eraseButton.Click += new System.EventHandler(this.eraseButton_Click);
+            // 
             // MainView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -268,6 +309,7 @@
             this.header.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.sidebar.ResumeLayout(false);
             this.viewport.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.timeline.ResumeLayout(false);
@@ -299,6 +341,9 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button eraseButton;
+        private System.Windows.Forms.Button sprayCanButton;
+        private System.Windows.Forms.Button pencilButton;
     }
 }
 

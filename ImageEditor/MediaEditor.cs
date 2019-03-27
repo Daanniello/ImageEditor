@@ -14,11 +14,14 @@ namespace ImageEditor
     {
         public MediaInformation MediaInformation;
         private MainView _view;
+        private Tool _currentTool;
+        private Color _currentColor;
 
         public MediaEditor(MainView view)
         {
             MediaInformation = new MediaInformation();
             _view = view;
+            _currentTool = new Pencil();
         }
 
         public bool OpenMedia(OpenFileDialog openFileDialog)
@@ -40,6 +43,19 @@ namespace ImageEditor
             List<Image> frames = MediaInformation.GetSelectedFrames();
             Queue<Image> updatedFrames = filter.ApplyFilterOnFrames(frames);
             return MediaInformation.SetSelectedFrames(updatedFrames);
+        }
+
+        public void SetTool(Tool tool)
+        {
+            _currentTool = tool;
+        }
+
+        public Bitmap UseTool(Point p, int x, int y)
+        {
+            var img = _currentTool.ApplyTool(MediaInformation.GetCurrentFrame(), _currentColor, p, x, y);
+            MediaInformation.SetCurrentFrame(img);
+            return img;
+            
         }
     }
 }
