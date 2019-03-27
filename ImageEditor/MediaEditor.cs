@@ -15,7 +15,7 @@ namespace ImageEditor
         public MediaInformation MediaInformation;
         private MainView _view;
         private Tool _currentTool;
-        private Color _currentColor;
+        private Color _currentColor = Color.Black;
 
         public MediaEditor(MainView view)
         {
@@ -50,11 +50,10 @@ namespace ImageEditor
             _currentTool = tool;
         }
 
-        public void UseTool(Point p, int x, int y, ref Image image)
+        public void UseTool(Point previous, Point current, ref Image image)
         {
-            _currentTool.ApplyTool(ref image, _currentColor, p, x, y);
-            MediaInformation.SetCurrentFrame(image);
-
+            _currentTool.ApplyTool(ref image, _currentColor, previous, current);
+            //MediaInformation.SetCurrentFrame(image);
         }
     }
 }

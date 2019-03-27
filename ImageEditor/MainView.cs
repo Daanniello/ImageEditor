@@ -8,7 +8,9 @@ namespace ImageEditor
     public partial class MainView : Form
     {
         private MediaEditor _mediaEditor;
-        private float _scaleFactor, _scaledWidth, _scaledHeight, _filler;
+        private float _scaleFactor, _filler;
+        private float _scaledWidth = 1.0f;
+        private float _scaledHeight = 1.0f;
 
         public MainView()
         {
@@ -31,6 +33,7 @@ namespace ImageEditor
 
             UpdateMedia();
             UpdateTimeline();
+            CheckRatio();
         }
 
         private void UpdateMedia()
@@ -117,41 +120,46 @@ namespace ImageEditor
         }
 
         private bool useTool = false;
-        private Point? _Previous = null;
+        private Point _previous;
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             
             useTool = true;
-            _Previous = e.Location;
-            Point p = e.Location;
+            _previous = e.Location;
             //_mediaEditor.SaveImagestatus()
-            //pictureBox1.Image = _mediaEditor.UseTool(p.X, p.Y);
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_Previous != null)
-            {
-                Point p = e.Location;
+            if (useTool)
+            {                
+                Point curr = e.Location;
+                if(horizontal)
+                {
+                    _previous.X = (int)(_previous.X / _scaleFactor);
+                    _previous.Y = (int)((_previous.Y - _filler) / _scaleFactor);
+                    curr.X = (int)(curr.X / _scaleFactor);
+                    curr.Y = (int)((curr.Y - _filler) / _scaleFactor);
+                }
+                else if(!horizontal)
+                {
+                    _previous.X = (int)((_previous.X - _filler) / _scaleFactor);
+                    _previous.Y = (int)(_previous.Y / _scaleFactor);
+                    curr.X = (int)((curr.X - _filler) / _scaleFactor);
+                    curr.Y = (int)(curr.Y / _scaleFactor);
+                }
+                
                 var image = pictureBox1.Image;
-                _mediaEditor.UseTool(_Previous.Value, p.X, p.Y, ref image);
-            }
-            if(useTool)
-                _Previous = e.Location;
+                _mediaEditor.UseTool(_previous, curr, ref image);
 
-            pictureBox1.Invalidate();
-            //if (useTool)
-            //{
-            //    Point p = e.Location;
-            //    //_mediaEditor.SaveImagestatus()
-            //    pictureBox1.Image = _mediaEditor.UseTool(p.X, p.Y);
-            //}
+                pictureBox1.Invalidate();
+                _previous = e.Location;
+            }
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            //Update actual image
-            _Previous = null;
+            //Update actual image]
             useTool = false;
         }
 
@@ -172,7 +180,7 @@ namespace ImageEditor
             var tool = new SprayCan();
             _mediaEditor.SetTool(tool);
         }
-
+        bool horizontal = true;
         private void CheckRatio()
         {
             int w_i = pictureBox1.Image.Width;
@@ -186,6 +194,7 @@ namespace ImageEditor
             if (imageRatio >= containerRatio)
             {
                 // horizontal image
+                horizontal = true;
                 _scaleFactor = w_c / (float)w_i;
                 _scaledHeight = h_i * _scaleFactor;
                 // calculate gap between top of container and top of image
@@ -196,6 +205,7 @@ namespace ImageEditor
             else
             {
                 // vertical image
+                horizontal = false;
                 _scaleFactor = h_c / (float)h_i;
                 _scaledWidth = w_i * _scaleFactor;
                 _filler = Math.Abs(w_c - _scaledWidth) / 2;
@@ -203,15 +213,5 @@ namespace ImageEditor
                 //unscaled_p.Y = (int)(p.Y / scaleFactor);
             }
         }
-
-        //private void test()
-        //{
-        //    Bitmap bmp = new Bitmap(pictureBox1.Image);
-        //    using (Graphics g = Graphics.FromImage(bmp))
-        //    {
-        //        g.DrawImage(new Bitmap((@"C:\Users\Mena\Desktop\1.png"), new Point(182, 213));
-        //    }
-        //    pictureBox1.Image = bmp;
-        //}
     }
 }

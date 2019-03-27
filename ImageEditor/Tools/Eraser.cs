@@ -9,9 +9,16 @@ namespace ImageEditor
 {
     class Eraser : Tool
     {
-        override public void ApplyTool(ref Image image, Color color, Point previous, int x, int y)
+        override public void ApplyTool(ref Image image, Color color, Point previous, Point current)
         {
-            throw new NotImplementedException();
+            SolidBrush eraser = new SolidBrush(Color.White);
+            //Pen eraser = new Pen(Color.White);
+            //eraser.Width = 10;
+            using (Graphics g = Graphics.FromImage(image))
+            {
+                //g.DrawLine(eraser, previous.X, previous.Y, current.X, current.Y);
+                g.FillRectangle(eraser, current.X-5, current.Y-5, 10, 10);
+            }
         }
     }
 }

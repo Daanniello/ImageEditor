@@ -9,6 +9,6 @@ namespace ImageEditor
 {
     abstract class Tool
     {
-        public abstract void ApplyTool(ref Image image, Color color, Point previous, int x, int y);
+        public abstract void ApplyTool(ref Image image, Color color, Point previous, Point current);
     }
 }

@@ -9,7 +9,7 @@ namespace ImageEditor
 {
     class SprayCan : Tool
     {
-        override public void ApplyTool(ref Image image, Color color, Point previous, int x, int y)
+        override public void ApplyTool(ref Image image, Color color, Point previous, Point current)
         {
             throw new NotImplementedException();
             //bmp.SetPixel(x, y, Color.Black);
