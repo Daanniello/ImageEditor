@@ -33,7 +33,7 @@ namespace ImageEditor
 
             UpdateMedia();
             InitializeTimeLine();
-            //CheckRatio();
+            CheckRatio();
         }
 
         private void UpdateMedia()
