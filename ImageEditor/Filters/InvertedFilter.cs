@@ -9,13 +9,14 @@ namespace ImageEditor
 {
     class InvertedFilter : Filter
     {
-        protected override byte[] CalculatePixel(byte r, byte g, byte b)
+        protected override byte[] CalculatePixel(byte r, byte g, byte b, byte a)
         {
             return new byte[] 
             {
                 Convert.ToByte(255 - r),
                 Convert.ToByte(255 - g),
-                Convert.ToByte(255 - b)
+                Convert.ToByte(255 - b),
+                Convert.ToByte(a)
             };
         }
     }

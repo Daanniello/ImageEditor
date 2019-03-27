@@ -180,6 +180,36 @@ namespace ImageEditor
             InitializeTimeLine();
         }
 
+
+        private void removeColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {                 
+            ApplyFilter("RemoveColor");
+        }
+
+        private void colorPickerButton_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null) return;
+            var color = new Color();
+            Bitmap b = pictureBox1.Image as Bitmap;
+
+            pictureBox1.MouseMove += PictureBoxMouseMove;
+            pictureBox1.Click += PictureBoxClick;
+
+            void PictureBoxMouseMove(object sender1, MouseEventArgs e1)
+            {
+                var pixel = b.GetPixel(e1.X, e1.Y);
+                colorButton.BackColor = pixel;
+                color = pixel;
+            }
+
+            void PictureBoxClick(object sender2, EventArgs e2)
+            {
+                colorButton.BackColor = color;
+                pictureBox1.MouseMove -= PictureBoxMouseMove;
+                pictureBox1.Click -= PictureBoxClick;
+             }
+             }
+
         private bool useTool = false;
         private Point _previous;
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -272,6 +302,7 @@ namespace ImageEditor
                 _filler = Math.Abs(w_c - _scaledWidth) / 2;
                 //unscaled_p.X = (int)((p.X - filler) / scaleFactor);
                 //unscaled_p.Y = (int)(p.Y / scaleFactor);
+
             }
         }
     }
