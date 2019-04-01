@@ -315,9 +315,17 @@ namespace ImageEditor
             
             void Run()
             {
-                PropertyItem item = _mediaEditor.MediaInformation.File.GetPropertyItem(0x5100);
-                // Time is in milliseconds
-                var delay = (item.Value[0] + item.Value[1] * 256) * 10;
+                var delay = 100;
+                try
+                {
+                    PropertyItem item = _mediaEditor.MediaInformation.File.GetPropertyItem(0x5100);
+                    // Time is in milliseconds
+                    delay = (item.Value[0] + item.Value[1] * 256) * 10;
+                }
+                catch
+                {
+                }
+                
                 var previewWindow = new Preview(_mediaEditor.MediaInformation.Frames, delay)
                 {
                     TopMost = true

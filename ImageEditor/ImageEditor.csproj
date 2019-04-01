@@ -70,7 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimatedImage.cs" />
+    <Compile Include="Porter\AnimatedImage.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\CycledFilter.cs" />
     <Compile Include="Filters\RandomizedFilter.cs" />
@@ -84,7 +84,7 @@
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
     <Compile Include="MediaInformation.cs" />
-    <Compile Include="MediaAdapter.cs" />
+    <Compile Include="Porter\MediaAdapter.cs" />
     <Compile Include="MediaEditor.cs" />
     <Compile Include="Porter\MediaPorter.cs" />
     <Compile Include="Preview.cs">
@@ -95,7 +95,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaticImage.cs" />
+    <Compile Include="Porter\StaticImage.cs" />
     <Compile Include="Tools\Tool.cs" />
     <Compile Include="Tools\SprayCan.cs" />
     <Compile Include="Tools\Eraser.cs" />
