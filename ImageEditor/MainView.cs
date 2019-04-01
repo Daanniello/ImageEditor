@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ImageEditor
@@ -16,7 +20,7 @@ namespace ImageEditor
         {
             InitializeComponent();
             _mediaEditor = new MediaEditor(this);
-            
+
         }
 
         private void MainView_Load(object sender, EventArgs e)
@@ -91,7 +95,7 @@ namespace ImageEditor
 
         private void filterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void grayscaleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -153,10 +157,10 @@ namespace ImageEditor
             _mediaEditor.MediaInformation.FrameIndex = listView1.SelectedItems[0].Index;
             UpdateMedia();
         }
-        
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Restart();          
+            Application.Restart();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -182,8 +186,8 @@ namespace ImageEditor
 
 
         private void removeColorToolStripMenuItem_Click(object sender, EventArgs e)
-        {                 
-            ApplyFilter("RemoveColor");
+        {
+            ApplyFilter("Glitch");
         }
 
         private void colorPickerButton_Click(object sender, EventArgs e)
@@ -199,12 +203,12 @@ namespace ImageEditor
             {
                 Point curr = e1.Location;
                 if (horizontal)
-                {         
+                {
                     curr.X = (int)(curr.X / _scaleFactor);
                     curr.Y = (int)((curr.Y - _filler) / _scaleFactor);
                 }
                 else if (!horizontal)
-                {  
+                {
                     curr.X = (int)((curr.X - _filler) / _scaleFactor);
                     curr.Y = (int)(curr.Y / _scaleFactor);
                 }
@@ -214,13 +218,14 @@ namespace ImageEditor
                     var pixel = b.GetPixel(curr.X, curr.Y);
                     colorButton.BackColor = pixel;
                     color = pixel;
+                    _mediaEditor._currentColor = color;
                 }
                 catch
                 {
 
                 }
-                
-               
+
+
             }
 
             void PictureBoxClick(object sender2, EventArgs e2)
@@ -277,8 +282,7 @@ namespace ImageEditor
 
         private void pencilButton_Click(object sender, EventArgs e)
         {
-            var tool = new Pencil();
-            _mediaEditor._currentColor = colorButton.BackColor;
+            var tool = new Pencil();  
             _mediaEditor.SetTool(tool);
         }
 
@@ -294,6 +298,36 @@ namespace ImageEditor
             _mediaEditor.SetTool(tool);
         }
         bool horizontal = true;
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+
+        }
+
+        //preview
+        private void previewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_mediaEditor.MediaInformation.File == null) return;
+
+            var task = new Thread(Run);
+            task.Start();
+            
+            void Run()
+            {
+                PropertyItem item = _mediaEditor.MediaInformation.File.GetPropertyItem(0x5100);
+                // Time is in milliseconds
+                var delay = (item.Value[0] + item.Value[1] * 256) * 10;
+                var previewWindow = new Preview(_mediaEditor.MediaInformation.Frames, delay)
+                {
+                    TopMost = true
+                };
+
+                Application.Run(previewWindow);
+            }
+
+        }
+
         private void CheckRatio()
         {
             int w_i = pictureBox1.Image.Width;

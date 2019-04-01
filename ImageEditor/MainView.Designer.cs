@@ -49,10 +49,10 @@
             this.splitter = new System.Windows.Forms.Splitter();
             this.sidebar = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.colorPickerButton = new System.Windows.Forms.Button();
             this.SpraycanButton = new System.Windows.Forms.Button();
-            this.EraserButton = new System.Windows.Forms.Button();
             this.PencilButton = new System.Windows.Forms.Button();
+            this.EraserButton = new System.Windows.Forms.Button();
+            this.colorPickerButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.colorButton = new System.Windows.Forms.Button();
             this.viewport = new System.Windows.Forms.Panel();
@@ -67,6 +67,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addBeforeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeFrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.previewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.header.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.sidebar.SuspendLayout();
@@ -95,12 +96,14 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolmenu,
             this.filterToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.previewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // toolmenu
             // 
@@ -163,36 +166,36 @@
             // grayscaleToolStripMenuItem
             // 
             this.grayscaleToolStripMenuItem.Name = "grayscaleToolStripMenuItem";
-            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.grayscaleToolStripMenuItem.Text = "Grayscale";
             this.grayscaleToolStripMenuItem.Click += new System.EventHandler(this.grayscaleToolStripMenuItem_Click);
             // 
             // invertedToolStripMenuItem
             // 
             this.invertedToolStripMenuItem.Name = "invertedToolStripMenuItem";
-            this.invertedToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.invertedToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.invertedToolStripMenuItem.Text = "Inverted";
             this.invertedToolStripMenuItem.Click += new System.EventHandler(this.invertedToolStripMenuItem_Click);
             // 
             // randomizedToolStripMenuItem
             // 
             this.randomizedToolStripMenuItem.Name = "randomizedToolStripMenuItem";
-            this.randomizedToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.randomizedToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.randomizedToolStripMenuItem.Text = "Randomized";
             this.randomizedToolStripMenuItem.Click += new System.EventHandler(this.randomizedToolStripMenuItem_Click);
             // 
             // cycledToolStripMenuItem
             // 
             this.cycledToolStripMenuItem.Name = "cycledToolStripMenuItem";
-            this.cycledToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.cycledToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.cycledToolStripMenuItem.Text = "Cycled";
             this.cycledToolStripMenuItem.Click += new System.EventHandler(this.cycledToolStripMenuItem_Click);
             // 
             // removeColorToolStripMenuItem
             // 
             this.removeColorToolStripMenuItem.Name = "removeColorToolStripMenuItem";
-            this.removeColorToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
-            this.removeColorToolStripMenuItem.Text = "Remove Color";
+            this.removeColorToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.removeColorToolStripMenuItem.Text = "Glitch";
             this.removeColorToolStripMenuItem.Click += new System.EventHandler(this.removeColorToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
@@ -241,8 +244,44 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(96, 135);
+            this.panel2.Size = new System.Drawing.Size(96, 94);
             this.panel2.TabIndex = 2;
+            // 
+            // SpraycanButton
+            // 
+            this.SpraycanButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SpraycanButton.BackgroundImage")));
+            this.SpraycanButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.SpraycanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SpraycanButton.Location = new System.Drawing.Point(49, 14);
+            this.SpraycanButton.Name = "SpraycanButton";
+            this.SpraycanButton.Size = new System.Drawing.Size(30, 30);
+            this.SpraycanButton.TabIndex = 4;
+            this.SpraycanButton.UseVisualStyleBackColor = true;
+            this.SpraycanButton.Click += new System.EventHandler(this.sprayCanButton_Click);
+            // 
+            // PencilButton
+            // 
+            this.PencilButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PencilButton.BackgroundImage")));
+            this.PencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PencilButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PencilButton.Location = new System.Drawing.Point(49, 50);
+            this.PencilButton.Name = "PencilButton";
+            this.PencilButton.Size = new System.Drawing.Size(30, 30);
+            this.PencilButton.TabIndex = 2;
+            this.PencilButton.UseVisualStyleBackColor = true;
+            this.PencilButton.Click += new System.EventHandler(this.pencilButton_Click);
+            // 
+            // EraserButton
+            // 
+            this.EraserButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EraserButton.BackgroundImage")));
+            this.EraserButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.EraserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EraserButton.Location = new System.Drawing.Point(14, 50);
+            this.EraserButton.Name = "EraserButton";
+            this.EraserButton.Size = new System.Drawing.Size(30, 30);
+            this.EraserButton.TabIndex = 3;
+            this.EraserButton.UseVisualStyleBackColor = true;
+            this.EraserButton.Click += new System.EventHandler(this.eraseButton_Click);
             // 
             // colorPickerButton
             // 
@@ -260,42 +299,6 @@
             this.colorPickerButton.TabIndex = 1;
             this.colorPickerButton.UseVisualStyleBackColor = false;
             this.colorPickerButton.Click += new System.EventHandler(this.colorPickerButton_Click);
-            // 
-            // SpraycanButton
-            // 
-            this.SpraycanButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SpraycanButton.BackgroundImage")));
-            this.SpraycanButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.SpraycanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SpraycanButton.Location = new System.Drawing.Point(49, 14);
-            this.SpraycanButton.Name = "SpraycanButton";
-            this.SpraycanButton.Size = new System.Drawing.Size(30, 30);
-            this.SpraycanButton.TabIndex = 4;
-            this.SpraycanButton.UseVisualStyleBackColor = true;
-            this.SpraycanButton.Click += new System.EventHandler(this.sprayCanButton_Click);
-            // 
-            // EraserButton
-            // 
-            this.EraserButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EraserButton.BackgroundImage")));
-            this.EraserButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.EraserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EraserButton.Location = new System.Drawing.Point(14, 50);
-            this.EraserButton.Name = "EraserButton";
-            this.EraserButton.Size = new System.Drawing.Size(30, 30);
-            this.EraserButton.TabIndex = 3;
-            this.EraserButton.UseVisualStyleBackColor = true;
-            this.EraserButton.Click += new System.EventHandler(this.eraseButton_Click);
-            // 
-            // PencilButton
-            // 
-            this.PencilButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PencilButton.BackgroundImage")));
-            this.PencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PencilButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PencilButton.Location = new System.Drawing.Point(49, 50);
-            this.PencilButton.Name = "PencilButton";
-            this.PencilButton.Size = new System.Drawing.Size(30, 30);
-            this.PencilButton.TabIndex = 2;
-            this.PencilButton.UseVisualStyleBackColor = true;
-            this.PencilButton.Click += new System.EventHandler(this.pencilButton_Click);
             // 
             // panel1
             // 
@@ -416,6 +419,13 @@
             this.removeFrameToolStripMenuItem.Text = "Remove Frame";
             this.removeFrameToolStripMenuItem.Click += new System.EventHandler(this.removeFrameToolStripMenuItem_Click);
             // 
+            // previewToolStripMenuItem
+            // 
+            this.previewToolStripMenuItem.Name = "previewToolStripMenuItem";
+            this.previewToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.previewToolStripMenuItem.Text = "Preview";
+            this.previewToolStripMenuItem.Click += new System.EventHandler(this.previewToolStripMenuItem_Click);
+            // 
             // MainView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -487,7 +497,7 @@
         private System.Windows.Forms.Button SpraycanButton;
         private System.Windows.Forms.Button EraserButton;
         private System.Windows.Forms.Button PencilButton;
-
+        private System.Windows.Forms.ToolStripMenuItem previewToolStripMenuItem;
     }
 }
 
