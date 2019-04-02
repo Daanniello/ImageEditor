@@ -23,14 +23,14 @@ namespace ImageEditor
                     return new RandomizedFilter();
                 case "Cycled":
                     return new CycledFilter();
-                case "RemoveColor":
-                    return new RemoveColor();
+                case "Glitch":
+                    return new GlitchFilter();
                 default:
                     throw new InvalidOperationException();
             }
         }
 
-        public Image ApplyFilter(Image image)
+        public virtual Image ApplyFilter(Image image)
         {
             Bitmap bitmap = image as Bitmap;
 

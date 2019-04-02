@@ -31,7 +31,7 @@ namespace ImageEditor
 
         public MediaInformation Open(OpenFileDialog openFileDialog)
         {
-            openFileDialog.Filter = "Image Files (PNG,GIF)|*.PNG;*.GIF";
+            openFileDialog.Filter = "Image Files (PNG,GIF,JPG)|*.PNG;*.GIF;*.JPG";
             DialogResult result = openFileDialog.ShowDialog();
 
             if (result != DialogResult.OK) return new MediaInformation();
